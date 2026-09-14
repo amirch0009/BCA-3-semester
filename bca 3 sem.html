@@ -1,0 +1,740 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BCA 3 SEM Notes</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f1f5f9;
+    color:#1e293b;
+}
+
+/* LOGIN PAGE */
+
+#loginPage{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#2563eb);
+}
+
+.login-box{
+    width:350px;
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+    text-align:center;
+}
+
+.login-box h1{
+    color:#2563eb;
+    margin-bottom:5px;
+}
+
+.login-box h2{
+    margin-bottom:25px;
+    color:#334155;
+}
+
+.login-box input{
+    width:100%;
+    padding:13px;
+    margin:8px 0;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.login-box button{
+    width:100%;
+    padding:13px;
+    margin-top:15px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.login-box button:hover{
+    background:#1d4ed8;
+}
+
+#error{
+    color:red;
+    margin-top:12px;
+}
+    .developer-name{
+    position:fixed;
+    left:20px;
+    bottom:20px;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+
+
+/* MAIN PAGE */
+
+#mainPage{
+    display:none;
+}
+
+header{
+    background:#0f172a;
+    color:white;
+    padding:22px;
+    text-align:center;
+}
+
+header h1{
+    font-size:30px;
+}
+
+header p{
+    margin-top:6px;
+    color:#cbd5e1;
+}
+
+.logout{
+    margin-top:12px;
+    padding:9px 18px;
+    border:none;
+    border-radius:7px;
+    background:#ef4444;
+    color:white;
+    cursor:pointer;
+}
+
+/* SUBJECTS */
+
+.container{
+    max-width:1100px;
+    margin:30px auto;
+    padding:20px;
+}
+
+.subject-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.subject{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 18px rgba(0,0,0,0.1);
+    cursor:pointer;
+    transition:0.3s;
+    border-left:6px solid #2563eb;
+}
+
+.subject:hover{
+    transform:translateY(-5px);
+}
+
+.subject h2{
+    color:#2563eb;
+    margin-bottom:8px;
+}
+
+.subject p{
+    color:#64748b;
+}
+
+/* UNITS */
+
+#unitsPage{
+    display:none;
+}
+
+.page-title{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.unit-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.unit{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    cursor:pointer;
+}
+
+.unit h2{
+    color:#7c3aed;
+    margin-bottom:8px;
+}
+
+.unit:hover{
+    background:#f5f3ff;
+}
+
+/* NOTES */
+
+#notesPage{
+    display:none;
+}
+
+.notes-box{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 18px rgba(0,0,0,0.1);
+}
+
+.notes-box h2{
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+textarea{
+    width:100%;
+    min-height:400px;
+    resize:vertical;
+    padding:18px;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    font-size:16px;
+    line-height:1.6;
+}
+
+.save-btn{
+    margin-top:15px;
+    padding:12px 25px;
+    background:#16a34a;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.back-btn{
+    margin-bottom:20px;
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    background:#475569;
+    color:white;
+    cursor:pointer;
+}
+
+.saved{
+    display:inline-block;
+    margin-left:15px;
+    color:green;
+    font-weight:bold;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .login-box{
+        width:90%;
+        padding:25px;
+    }
+
+    header h1{
+        font-size:24px;
+    }
+
+    .container{
+        padding:15px;
+        margin:15px auto;
+    }
+
+    textarea{
+        min-height:350px;
+    }
+}
+.subject-shapes{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.subject-shape{
+    position:absolute;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:13px 18px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.10);
+    border:1px solid rgba(255,255,255,0.25);
+    color:white;
+    font-size:14px;
+    font-weight:bold;
+    backdrop-filter:blur(8px);
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
+    animation:float 5s ease-in-out infinite;
+}
+
+.subject-shape svg{
+    width:24px;
+    height:24px;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+.shape1{top:12%;left:5%;}
+.shape2{top:25%;right:5%;}
+.shape3{bottom:25%;left:6%;}
+.shape4{bottom:12%;right:6%;}
+.shape5{top:50%;left:3%;}
+.shape6{top:50%;right:3%;}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+.aamir-wall{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-wrap:wrap;
+    align-content:space-around;
+    justify-content:space-around;
+    gap:35px;
+    padding:25px;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+    transform:rotate(-12deg) scale(1.15);
+}
+
+.aamir-wall span{
+    font-size:42px;
+    font-weight:900;
+    letter-spacing:5px;
+    color:rgba(255,0,0,0.10);
+    text-shadow:
+        0 0 12px rgba(255,0,0,0.25),
+        0 0 25px rgba(255,0,0,0.12);
+    white-space:nowrap;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+
+<div id="loginPage">
+<div class="subject-shapes">
+
+    <div class="subject-shape shape1">
+        💻 Data Structure
+    </div>
+
+    <div class="subject-shape shape2">
+        🧮 Basic Mathematics
+    </div>
+
+    <div class="subject-shape shape3">
+        🌐 Java Programming
+    </div>
+
+    <div class="subject-shape shape4">
+        💰 Finance
+    </div>
+
+    <div class="subject-shape shape5">
+        🖥️ PC Installation
+    </div>
+
+    <div class="subject-shape shape6">
+        📝 Urdu
+    </div>
+
+</div>
+  <div class="aamir-wall">
+    <span>AAMIR</span>
+    <span>AAMIR</span>
+    <span>AAMIR</span>
+    <span>AAMIR</span>
+    <span>AAMIR</span>
+    <span>AAMIR</span>
+    <span>AAMIR</span>
+    <span>AAMIR</span>
+    <span>AAMIR</span>
+    <span>AAMIR</span>
+    <span>AAMIR</span>
+    <span>AAMIR</span>
+    <span>AAMIR</span>
+    <span>AAMIR</span>
+    <span>AAMIR</span>
+    <span>AAMIR</span>
+</div>  
+<div class="login-box">
+
+        <h1>BCA 3 SEM</h1>
+        <h2>Notes Portal</h2>
+
+        <input type="text" id="username" placeholder="Enter Username">
+
+        <input type="password" id="password" placeholder="Enter Password">
+
+        <button onclick="login()">LOGIN</button>
+
+        <p id="error"></p>
+
+    </div>
+
+<div class="developer-name">Developed by Aamir</div>
+
+</div>
+
+
+<!-- MAIN PAGE -->
+
+<div id="mainPage">
+
+<header>
+
+    <h1>BCA 3 SEM</h1>
+
+    <p>Computer Applications - Semester 3 Notes</p>
+
+    <button class="logout" onclick="logout()">Logout</button>
+
+</header>
+
+<div class="container">
+
+    <h2 class="page-title">📚 Select Your Subject</h2>
+
+    <div class="subject-grid">
+
+        <div class="subject" onclick="openSubject('Data Structure')">
+            <h2>1. Data Structure</h2>
+            <p>4 Units Available</p>
+        </div>
+
+        <div class="subject" onclick="openSubject('Basic Mathematics')">
+            <h2>2. Basic Mathematics</h2>
+            <p>4 Units Available</p>
+        </div>
+
+        <div class="subject" onclick="openSubject('Java Programming')">
+            <h2>3. Java Programming</h2>
+            <p>4 Units Available</p>
+        </div>
+
+        <div class="subject" onclick="openSubject('Finance')">
+            <h2>4. Finance</h2>
+            <p>4 Units Available</p>
+        </div>
+
+        <div class="subject" onclick="openSubject('PC installation')">
+            <h2>5. PC Installation</h2>
+            <p>4 Units Available</p>
+        </div>
+
+        <div class="subject" onclick="openSubject('Urdu')">
+            <h2>6. Urdu</h2>
+            <p>4 Units Available</p>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- UNITS PAGE -->
+
+<div id="unitsPage">
+
+<header>
+
+    <h1>BCA 3 SEM</h1>
+    <p id="selectedSubject"></p>
+
+</header>
+
+<div class="container">
+
+    <button class="back-btn" onclick="backToSubjects()">
+        ← Back to Subjects
+    </button>
+
+    <h2 class="page-title">📖 Select Unit</h2>
+<div class="unit-grid" id="unitList"></div>
+    
+</div>
+
+
+<!-- NOTES PAGE -->
+
+<div id="notesPage">
+
+<header>
+
+    <h1>BCA 3 SEM</h1>
+    <p id="notesSubject"></p>
+
+</header>
+
+<div class="container">
+
+    <button class="back-btn" onclick="backToUnits()">
+        ← Back to Units
+    </button>
+
+    <div class="notes-box">
+
+        <h2 id="unitTitle"></h2>
+
+        <textarea id="notes"
+        placeholder="Write your notes here..."></textarea>
+
+        <br>
+
+        <button class="save-btn" onclick="saveNotes()">
+            💾 Save Notes
+        </button>
+
+        <span class="saved" id="savedMessage"></span>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<script>
+
+let currentSubject = "";
+let currentUnit = "";
+
+const unitNames = {
+
+    "Data Structure": [
+        "Introduction to Data Structure",
+        "Arrays",
+        "Linked List",
+        "Stack and Queue"
+    ],
+
+    "Basic Mathematics": [
+        "Set Theory",
+        "Relations and Functions",
+        "Matrices",
+        "Probability"
+    ],
+
+    "Web Development": [
+        "Introduction to HTML",
+        "CSS",
+        "JavaScript",
+        "Forms and Web Pages"
+    ],
+
+    "Finance": [
+        "Introduction to Finance",
+        "Financial Management",
+        "Banking System",
+        "Investment"
+    ],
+
+    "Java Programming": [
+        "Computer Hardware",
+        "PC Components",
+        "Operating System Installation",
+        "Troubleshooting"
+    ],
+
+    "Urdu": [
+        "Unit 1 - Urdu Literature",
+        "Unit 2 - Poetry",
+        "Unit 3 - Prose",
+        "Unit 4 - Grammar"
+    ]
+
+};
+
+/* LOGIN */
+
+function login(){
+
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    if(username === "notes" && password === "12345"){
+
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("mainPage").style.display = "block";
+
+    }else{
+
+        document.getElementById("error").innerText =
+        "❌ Wrong Username or Password";
+
+    }
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+    document.getElementById("mainPage").style.display = "none";
+
+    document.getElementById("loginPage").style.display = "flex";
+
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+
+}
+
+
+/* OPEN SUBJECT */
+
+function openSubject(subject){
+
+    currentSubject = subject;
+
+    document.getElementById("mainPage").style.display = "none";
+    document.getElementById("unitsPage").style.display = "block";
+
+    document.getElementById("selectedSubject").innerText = subject;
+
+    let unitList = document.getElementById("unitList");
+
+    unitList.innerHTML = "";
+
+    unitNames[subject].forEach(function(name, index){
+
+        let unitNumber = index + 1;
+
+        unitList.innerHTML += `
+            <div class="unit" onclick="openUnit(${unitNumber})">
+
+                <h2>Unit ${unitNumber}</h2>
+
+                <p>${name}</p>
+
+            </div>
+        `;
+
+    });
+
+}
+
+
+/* OPEN UNIT */
+
+function openUnit(unit){
+
+    currentUnit = "Unit " + unit;
+
+    document.getElementById("unitsPage").style.display = "none";
+
+    document.getElementById("notesPage").style.display = "block";
+
+    document.getElementById("notesSubject").innerText =
+    currentSubject;
+
+    document.getElementById("unitTitle").innerText =
+    currentSubject + " - " + currentUnit;
+
+    let key = currentSubject + "_" + currentUnit;
+
+    let savedNotes = localStorage.getItem(key);
+
+    if(savedNotes){
+
+        document.getElementById("notes").value = savedNotes;
+
+    }else{
+
+        document.getElementById("notes").value = "";
+
+    }
+
+    document.getElementById("savedMessage").innerText = "";
+
+}
+
+
+/* SAVE NOTES */
+
+function saveNotes(){
+
+    let notes = document.getElementById("notes").value;
+
+    let key = currentSubject + "_" + currentUnit;
+
+    localStorage.setItem(key, notes);
+
+    document.getElementById("savedMessage").innerText =
+    "✓ Notes Saved Successfully!";
+
+}
+
+
+/* BACK TO SUBJECTS */
+
+function backToSubjects(){
+
+    document.getElementById("unitsPage").style.display = "none";
+
+    document.getElementById("mainPage").style.display = "block";
+
+}
+
+
+/* BACK TO UNITS */
+
+function backToUnits(){
+
+    document.getElementById("notesPage").style.display = "none";
+
+    document.getElementById("unitsPage").style.display = "block";
+
+}
+
+</script>
+
+</body>
+</html>
+
