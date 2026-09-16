@@ -423,38 +423,18 @@ textarea{
 
         <h2>Notes Portal</h2>
 
-      <input
-    type="tel"
-    id="phoneNumber"
-    placeholder="Enter Mobile Number"
-    maxlength="15"
->
+     
+<div class="welcome-box">
 
-<div id="recaptcha-container"></div>
+    <h1>WELCOME TO AAMIR NOTES</h1>
 
-<button onclick="sendOTP()">
-    SEND OTP
-</button>
+    <p>Your BCA 3 Semester Notes Portal</p>
 
-<div id="otp-section" style="display:none;">
-
-    <input
-        type="text"
-        id="otp"
-        placeholder="Enter 6 Digit OTP"
-        maxlength="6"
-    >
-
-    <button onclick="verifyOTP()">
-        VERIFY & LOGIN
+    <button onclick="continueToNotes()">
+        CONTINUE
     </button>
 
 </div>
-
-<p id="error"></p>
-    </div>
-
-
     <div class="developer-name">
         Developed by Aamir
     </div>
@@ -1128,7 +1108,10 @@ function backToUnits(){
     .style.display = "block";
 
 }
-
+function continueToNotes() {
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("mainPage").style.display = "block";
+}
 </script>
 
 </body>
