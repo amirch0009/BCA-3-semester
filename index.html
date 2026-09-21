@@ -1,552 +1,418 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>BCA 3 Semester Notes | BCA Notes by Aamir</title>
 
-<meta name="description" content="BCA Notes by Aamir – BCA 3rd Semester notes, unit-wise study material and educational resources for BCA students.">
-
-<meta name="keywords" content="BCA 3 Semester Notes, BCA 3rd Semester Notes, BCA Notes, BCA Study Material">
-
-<meta name="author" content="Aamir">
-
-<meta name="robots" content="index, follow">
-
-<link rel="canonical" href="https://amirch0009.github.io/BCA-3-semester/">
+<meta name="description"
+content="BCA Notes by Aamir – BCA 3rd Semester notes, unit-wise study material and educational resources for BCA students.">
 
 <style>
 
+/* =========================
+   GENERAL
+========================= */
+
 *{
     box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Arial,sans-serif;
 }
 
 body{
-    background:#f1f5f9;
-    color:#1e293b;
+    margin:0;
+    padding:0;
+    font-family:Arial, sans-serif;
+    background:#f4f7fb;
+    color:#111827;
 }
 
-/* ================= WELCOME PAGE ================= */
+
+/* =========================
+   WELCOME PAGE
+========================= */
 
 #loginPage{
     min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#0f172a,#2563eb);
+    background:linear-gradient(135deg,#dbeafe,#eff6ff,#ffffff);
     position:relative;
     overflow:hidden;
 }
 
 .login-box{
     width:90%;
-    max-width:400px;
-    background:white;
-    padding:35px 25px;
-    border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+    max-width:500px;
     text-align:center;
+    background:white;
+    padding:45px 25px;
+    border-radius:20px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.15);
     position:relative;
-    z-index:5;
+    z-index:2;
 }
 
 .login-box h1{
+    font-size:30px;
     color:#2563eb;
     margin-bottom:10px;
-    font-size:28px;
 }
 
-.login-box h2{
-    color:#334155;
-    margin-bottom:20px;
+.login-box p{
+    font-size:17px;
+    color:#555;
+    margin-bottom:30px;
 }
 
-.welcome-box h1{
-    color:#2563eb;
-    font-size:27px;
-    margin-bottom:12px;
-}
-
-.welcome-box p{
-    color:#64748b;
-    margin-bottom:25px;
-    font-size:15px;
-}
-
-.welcome-box button{
-    width:100%;
-    padding:14px;
+.continue-btn{
     border:none;
-    border-radius:10px;
     background:#2563eb;
     color:white;
+    padding:14px 35px;
+    border-radius:10px;
     font-size:17px;
     font-weight:bold;
     cursor:pointer;
 }
 
-.welcome-box button:hover{
+.continue-btn:hover{
     background:#1d4ed8;
-    transform:scale(1.02);
 }
 
-.developer-name{
-    position:fixed;
-    left:20px;
-    bottom:20px;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    letter-spacing:1px;
-    z-index:5;
+
+/* =========================
+   MAIN PAGE
+========================= */
+
+#mainPage{
+    display:none;
+    min-height:100vh;
+    padding:20px;
 }
 
-/* AAMIR BACKGROUND */
-
-.aamir-wall{
-    position:absolute;
-    inset:0;
-    display:flex;
-    flex-wrap:wrap;
-    align-content:space-around;
-    justify-content:space-around;
-    gap:35px;
-    padding:25px;
-    overflow:hidden;
-    pointer-events:none;
-    z-index:0;
-    transform:rotate(-12deg) scale(1.15);
+.main-header{
+    text-align:center;
+    margin-bottom:25px;
 }
 
-.aamir-wall span{
-    font-size:42px;
-    font-weight:900;
-    letter-spacing:5px;
-    color:rgba(255,0,0,0.10);
-    white-space:nowrap;
+.main-header h1{
+    color:#2563eb;
+    margin-bottom:5px;
 }
 
-/* FLOATING SUBJECTS */
-
-.subject-shapes{
-    position:absolute;
-    inset:0;
-    overflow:hidden;
-    pointer-events:none;
+.main-header p{
+    color:#555;
 }
 
-.subject-shape{
-    position:absolute;
-    padding:13px 18px;
+
+/* =========================
+   SUBJECT CARDS
+========================= */
+
+.subject-grid{
+    max-width:1000px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.subject-card{
+    background:white;
     border-radius:15px;
-    background:rgba(255,255,255,0.10);
-    border:1px solid rgba(255,255,255,0.25);
-    color:white;
-    font-size:14px;
-    font-weight:bold;
-    backdrop-filter:blur(8px);
-    animation:float 5s ease-in-out infinite;
+    padding:25px 15px;
+    text-align:center;
+    cursor:pointer;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+    transition:0.2s;
 }
 
-.shape1{top:12%;left:5%;}
-.shape2{top:25%;right:5%;}
-.shape3{bottom:25%;left:6%;}
-.shape4{bottom:12%;right:6%;}
-.shape5{top:50%;left:3%;}
-.shape6{top:50%;right:3%;}
-
-@keyframes float{
-
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-12px);
-    }
-
+.subject-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
 }
+
+.subject-icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.subject-card h3{
+    margin:5px 0;
+    color:#1e3a8a;
+}
+
+.subject-card p{
+    margin:5px 0;
+    color:#777;
+}
+
+
+/* =========================
+   UNITS PAGE
+========================= */
+
+#unitsPage{
+    display:none;
+    min-height:100vh;
+    padding:20px;
+}
+
+.units-container{
+    max-width:800px;
+    margin:auto;
+}
+
+.units-header{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.units-header h2{
+    color:#2563eb;
+}
+
+.unit-card{
+    background:white;
+    margin:12px 0;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    cursor:pointer;
+}
+
+.unit-card:hover{
+    background:#eff6ff;
+}
+
+.unit-card h3{
+    margin:0 0 5px;
+    color:#1e40af;
+}
+
+.unit-card p{
+    margin:0;
+    color:#666;
+}
+
+
+/* =========================
+   NOTES PAGE
+========================= */
+
+#notesPage{
+    display:none;
+    min-height:100vh;
+    width:100%;
+    padding:10px;
+    background:white;
+}
+
+.notes-container{
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+}
+
+
+/* =========================
+   TOOLBAR
+========================= */
+
 .toolbar{
     display:flex;
-    gap:8px;
+    gap:6px;
     flex-wrap:wrap;
-    margin-bottom:10px;
+    width:100%;
+    margin-bottom:8px;
 }
 
 .toolbar button,
 .toolbar select{
-    padding:8px 12px;
-    border:1px solid #ccc;
+    padding:8px 11px;
+    border:1px solid #cbd5e1;
     border-radius:6px;
     background:white;
     cursor:pointer;
+    font-size:14px;
 }
+
+.toolbar button:hover,
+.toolbar select:hover{
+    background:#eff6ff;
+}
+
+
+/* =========================
+   NOTES EDITOR
+========================= */
 
 .notes-editor{
     width:100%;
-    min-height:400px;
+    min-height:calc(100vh - 145px);
     padding:18px;
-    border:1px solid #ccc;
-    border-radius:10px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
     background:white;
     color:#111;
-    font-size:16px;
-    line-height:1.6;
+    font-size:17px;
+    line-height:1.7;
     outline:none;
+    overflow-y:auto;
 }
 
 .notes-editor:focus{
     border-color:#2563eb;
 }
-@media (max-width: 600px){
 
-    .notes-editor{
-        width: 100%;
-        min-height: 75vh;
-        box-sizing: border-box;
-        font-size: 17px;
-        padding: 15px;
-    }
 
-    .toolbar{
-        width: 100%;
-        gap: 5px;
-    }
+/* =========================
+   SAVE BUTTON
+========================= */
 
-    .toolbar button,
-    .toolbar select{
-        padding: 8px 10px;
-        font-size: 14px;
-    }
-
+.save-btn{
+    width:100%;
+    padding:13px;
+    margin-bottom:8px;
+    border:none;
+    border-radius:8px;
+    background:#16a34a;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
 }
-@media (max-width: 600px){
 
-    #notesPage{
-        width:100%;
-        min-height:100vh;
+.save-btn:hover{
+    background:#15803d;
+}
+
+#savedMessage{
+    text-align:center;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-btn{
+    padding:8px 14px;
+    border:none;
+    border-radius:7px;
+    background:#64748b;
+    color:white;
+    cursor:pointer;
+    margin-bottom:8px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    #mainPage{
         padding:10px;
-        box-sizing:border-box;
     }
 
-    #notesPage h2{
-        font-size:22px;
-        margin:5px 0 10px;
+    .subject-grid{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
     }
 
-    #notesPage .notes-editor{
-        min-height:75vh;
-        width:100%;
+    .subject-card{
+        padding:18px 8px;
     }
-}
-@media (max-width: 600px){
 
-    body{
-        margin:0;
-        padding:0;
+    .subject-icon{
+        font-size:32px;
+    }
+
+    .subject-card h3{
+        font-size:15px;
+    }
+
+    #unitsPage{
+        padding:10px;
+    }
+
+    .unit-card{
+        padding:17px;
     }
 
     #notesPage{
         padding:5px;
-        margin:0;
+        min-height:100vh;
     }
 
-    #notesPage .notes-editor{
-        min-height:calc(100vh - 150px);
-        width:100%;
-        box-sizing:border-box;
-        border-radius:5px;
-    }
-}
-/* ================= MAIN PAGE ================= */
-
-#mainPage{
-    display:none;
-}
-
-header{
-    background:#0f172a;
-    color:white;
-    padding:22px;
-    text-align:center;
-}
-
-header h1{
-    font-size:30px;
-}
-
-header p{
-    margin-top:6px;
-    color:#cbd5e1;
-}
-
-.logout{
-    margin-top:12px;
-    padding:9px 18px;
-    border:none;
-    border-radius:7px;
-    background:#ef4444;
-    color:white;
-    cursor:pointer;
-}
-
-.container{
-    max-width:1100px;
-    margin:30px auto;
-    padding:20px;
-}
-
-.page-title{
-    text-align:center;
-    margin-bottom:25px;
-}
-
-/* SUBJECTS */
-
-.subject-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-}
-
-.subject{
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 5px 18px rgba(0,0,0,0.1);
-    cursor:pointer;
-    transition:0.3s;
-    border-left:6px solid #2563eb;
-}
-
-.subject:hover{
-    transform:translateY(-5px);
-}
-
-.subject h2{
-    color:#2563eb;
-    margin-bottom:8px;
-}
-
-.subject p{
-    color:#64748b;
-}
-
-/* UNITS */
-
-#unitsPage{
-    display:none;
-}
-
-.unit-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-}
-
-.unit{
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    cursor:pointer;
-}
-
-.unit h2{
-    color:#7c3aed;
-    margin-bottom:8px;
-}
-
-.unit:hover{
-    background:#f5f3ff;
-}
-
-/* NOTES */
-
-#notesPage{
-    display:none;
-}
-
-.notes-box{
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 5px 18px rgba(0,0,0,0.1);
-}
-
-.notes-box h2{
-    color:#2563eb;
-    margin-bottom:15px;
-}
-
-textarea{
-    width:100%;
-    min-height:400px;
-    resize:vertical;
-    padding:18px;
-    border:1px solid #cbd5e1;
-    border-radius:10px;
-    font-size:16px;
-    line-height:1.6;
-}
-
-.save-btn{
-    margin-top:15px;
-    padding:12px 25px;
-    background:#16a34a;
-    color:white;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:16px;
-}
-
-.back-btn{
-    margin-bottom:20px;
-    padding:10px 18px;
-    border:none;
-    border-radius:8px;
-    background:#475569;
-    color:white;
-    cursor:pointer;
-}
-
-.saved{
-    display:inline-block;
-    margin-left:15px;
-    color:green;
-    font-weight:bold;
-}
-
-/* MOBILE */
-
-@media(max-width:600px){
-
-    .login-box{
-        width:90%;
-        padding:25px;
-    }
-
-    .welcome-box h1{
-        font-size:23px;
-    }
-
-    header h1{
-        font-size:24px;
-    }
-
-    .container{
+    .notes-editor{
+        min-height:calc(100vh - 155px);
+        font-size:17px;
         padding:15px;
-        margin:15px auto;
     }
 
-    textarea{
-        min-height:350px;
+    .toolbar button,
+    .toolbar select{
+        padding:8px 9px;
+        font-size:13px;
     }
 
-    .aamir-wall span{
-        font-size:30px;
+    .login-box h1{
+        font-size:25px;
     }
-
 }
 
 </style>
+
 </head>
+
 
 <body>
 
 
-<!-- ================= WELCOME PAGE ================= -->
+<!-- =========================
+     WELCOME PAGE
+========================= -->
 
 <div id="loginPage">
 
-    <div class="subject-shapes">
-
-        <div class="subject-shape shape1">
-            💻 Data Structure
-        </div>
-
-        <div class="subject-shape shape2">
-            🧮 Basic Mathematics
-        </div>
-
-        <div class="subject-shape shape3">
-            ☕ JAVA Programming
-        </div>
-
-        <div class="subject-shape shape4">
-            💰 Finance
-        </div>
-
-        <div class="subject-shape shape5">
-            🖥️ PC Installation
-        </div>
-
-        <div class="subject-shape shape6">
-            📝 Urdu
-        </div>
-
-    </div>
-
-
-    <div class="aamir-wall">
-
-        <span>AAMIR</span>
-        <span>AAMIR</span>
-        <span>AAMIR</span>
-        <span>AAMIR</span>
-        <span>AAMIR</span>
-        <span>AAMIR</span>
-        <span>AAMIR</span>
-        <span>AAMIR</span>
-        <span>AAMIR</span>
-        <span>AAMIR</span>
-        <span>AAMIR</span>
-        <span>AAMIR</span>
-
-    </div>
-
-
     <div class="login-box">
 
-        <h1>BCA 3 SEM</h1>
+        <h1>WELCOME TO AAMIR NOTES</h1>
 
-        <h2>Notes Portal</h2>
+        <p>
+            Your BCA 3 Semester Notes Portal
+        </p>
 
-        <div class="welcome-box">
+        <button
+            class="continue-btn"
+            onclick="continueToNotes()">
+            CONTINUE
+        </button>
 
-            <h1>WELCOME TO AAMIR NOTES</h1>
-
-            <p>
-                Your BCA 3 Semester Notes Portal
-            </p>
-
-            <button onclick="continueToNotes()">
-                CONTINUE
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div class="developer-name">
-        Developed by Aamir
     </div>
 
 </div>
 
 
-<!-- ================= MAIN PAGE ================= -->
+
+<!-- =========================
+     MAIN PAGE
+========================= -->
 
 <div id="mainPage">
 
-    <header>
+    <div class="main-header">
 
         <h1>BCA 3 SEM</h1>
 
@@ -554,77 +420,80 @@ textarea{
             Computer Applications - Semester 3 Notes
         </p>
 
-        <button
-            class="logout"
-            onclick="logout()"
-        >
-            Logout
-        </button>
-
-    </header>
+    </div>
 
 
-    <div class="container">
-
-        <h2 class="page-title">
-            📚 Select Your Subject
-        </h2>
+    <div class="subject-grid">
 
 
-        <div class="subject-grid">
+        <div class="subject-card"
+             onclick="openSubject('Data Structure')">
 
-            <div
-                class="subject"
-                onclick="openSubject('Data Structure')"
-            >
-                <h2>1. Data Structure</h2>
-                <p>4 Units Available</p>
-            </div>
+            <div class="subject-icon">💻</div>
 
+            <h3>Data Structure</h3>
 
-            <div
-                class="subject"
-                onclick="openSubject('Basic Mathematics')"
-            >
-                <h2>2. Basic Mathematics</h2>
-                <p>4 Units Available</p>
-            </div>
+            <p>4 Units Available</p>
+
+        </div>
 
 
-            <div
-                class="subject"
-                onclick="openSubject('JAVA Programming')"
-            >
-                <h2>3. JAVA Programming</h2>
-                <p>4 Units Available</p>
-            </div>
+        <div class="subject-card"
+             onclick="openSubject('Basic Mathematics')">
+
+            <div class="subject-icon">🧮</div>
+
+            <h3>Basic Mathematics</h3>
+
+            <p>4 Units Available</p>
+
+        </div>
 
 
-            <div
-                class="subject"
-                onclick="openSubject('Finance')"
-            >
-                <h2>4. Finance</h2>
-                <p>4 Units Available</p>
-            </div>
+        <div class="subject-card"
+             onclick="openSubject('JAVA Programming')">
+
+            <div class="subject-icon">🌐</div>
+
+            <h3>JAVA Programming</h3>
+
+            <p>4 Units Available</p>
+
+        </div>
 
 
-            <div
-                class="subject"
-                onclick="openSubject('PC Installation')"
-            >
-                <h2>5. PC Installation</h2>
-                <p>4 Units Available</p>
-            </div>
+        <div class="subject-card"
+             onclick="openSubject('Finance')">
+
+            <div class="subject-icon">💰</div>
+
+            <h3>Finance</h3>
+
+            <p>4 Units Available</p>
+
+        </div>
 
 
-            <div
-                class="subject"
-                onclick="openSubject('Urdu')"
-            >
-                <h2>6. Urdu</h2>
-                <p>4 Units Available</p>
-            </div>
+        <div class="subject-card"
+             onclick="openSubject('PC Installation')">
+
+            <div class="subject-icon">🖥️</div>
+
+            <h3>PC Installation</h3>
+
+            <p>4 Units Available</p>
+
+        </div>
+
+
+        <div class="subject-card"
+             onclick="openSubject('Urdu')">
+
+            <div class="subject-icon">📝</div>
+
+            <h3>Urdu</h3>
+
+            <p>4 Units Available</p>
 
         </div>
 
@@ -633,105 +502,127 @@ textarea{
 </div>
 
 
-<!-- ================= UNITS PAGE ================= -->
+
+<!-- =========================
+     UNITS PAGE
+========================= -->
 
 <div id="unitsPage">
 
-    <header>
-
-        <h1>BCA 3 SEM</h1>
-
-        <p id="selectedSubject"></p>
-
-    </header>
-
-
-    <div class="container">
+    <div class="units-container">
 
         <button
             class="back-btn"
-            onclick="backToSubjects()"
-        >
-            ← Back to Subjects
+            onclick="backToSubjects()">
+            ← Back
         </button>
 
+        <div class="units-header">
 
-        <h2 class="page-title">
-            📖 Select Unit
-        </h2>
+            <h2 id="subjectTitle"></h2>
 
+        </div>
 
-        <div
-            class="unit-grid"
-            id="unitList"
-        ></div>
+        <div id="unitList"></div>
 
     </div>
 
 </div>
 
 
-<!-- ================= NOTES PAGE ================= -->
+
+<!-- =========================
+     NOTES PAGE
+========================= -->
 
 <div id="notesPage">
 
-    <header>
+    <div class="notes-container">
 
-        <h1>BCA 3 SEM</h1>
-
-        <p id="notesSubject"></p>
-
-    </header>
-
-
-    <div class="container">
 
         <button
             class="back-btn"
-            onclick="backToUnits()"
-        >
-            ← Back to Units
+            onclick="backToUnits()">
+            ← Back
         </button>
 
 
-        <div class="notes-box">
+        <div class="toolbar">
 
-            <h2 id="unitTitle"></h2>
+            <button
+                onclick="formatText('bold')">
+                <b>B</b>
+            </button>
 
-           <div class="toolbar">
+            <button
+                onclick="formatText('italic')">
+                <i>I</i>
+            </button>
 
-    <button onclick="formatText('bold')"><b>B</b></button>
+            <button
+                onclick="formatText('underline')">
+                <u>U</u>
+            </button>
 
-    <button onclick="formatText('italic')"><i>I</i></button>
 
-    <button onclick="formatText('underline')"><u>U</u></button>
+            <select
+                onchange="changeColor(this.value)">
 
-    <select onchange="changeColor(this.value)">
-        <option value="">Text Color</option>
-        <option value="red">Red</option>
-        <option value="blue">Blue</option>
-        <option value="green">Green</option>
-        <option value="purple">Purple</option>
-        <option value="black">Black</option>
-    </select>
+                <option value="">
+                    Text Color
+                </option>
 
-</div>
-<button onclick="saveNotes()" class="save-btn">💾 SAVE NOTES</button>
+                <option value="red">
+                    Red
+                </option>
 
-<div id="savedMessage"></div>
-<div
-    id="notes"
-    class="notes-editor"
-    contenteditable="true"
->
-    Write your notes here...
-</div>
+                <option value="blue">
+                    Blue
+                </option>
+
+                <option value="green">
+                    Green
+                </option>
+
+                <option value="purple">
+                    Purple
+                </option>
+
+                <option value="black">
+                    Black
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            onclick="saveNotes()"
+            class="save-btn">
+            💾 SAVE NOTES
+        </button>
+
+
+        <div id="savedMessage"></div>
+
+
+        <div
+            id="notes"
+            class="notes-editor"
+            contenteditable="true">
+        </div>
+
+
     </div>
 
 </div>
 
 
-<!-- ================= FIREBASE ================= -->
+
+<!-- =========================
+     FIREBASE
+========================= -->
 
 <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
 
@@ -740,48 +631,60 @@ textarea{
 
 <script>
 
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
 const firebaseConfig = {
 
-    apiKey: "AIzaSyBCjMdAhbwSVtBbWDFTSqWr6u3xo9M-WTE",
+    apiKey: "PASTE_YOUR_EXISTING_API_KEY_HERE",
 
     authDomain:
-    "bca-3-semester.firebaseapp.com",
+        "bca-3-semester.firebaseapp.com",
 
     databaseURL:
-    "https://bca-3-semester-default-rtdb.firebaseio.com",
+        "https://bca-3-semester-default-rtdb.firebaseio.com",
 
     projectId:
-    "bca-3-semester",
+        "bca-3-semester",
 
     storageBucket:
-    "bca-3-semester.firebasestorage.app",
+        "bca-3-semester.firebasestorage.app",
 
     messagingSenderId:
-    "977366533839",
+        "977366533839",
 
     appId:
-    "1:977366533839:web:dd68b77c64522dd40459ba"
+        "1:977366533839:web:dd68b77c64522dd40459ba"
 
 };
 
 
 firebase.initializeApp(firebaseConfig);
 
-const db = firebase.database();
+const db =
+    firebase.database();
 
 
-/* VARIABLES */
+
+/* =========================
+   VARIABLES
+========================= */
 
 let currentSubject = "";
 
 let currentUnit = "";
 
 
-/* UNIT NAMES */
+
+/* =========================
+   UNIT NAMES
+========================= */
 
 const unitNames = {
 
-    "Data Structure": [
+    "Data Structure":[
 
         "Introduction to Data Structure",
 
@@ -794,7 +697,7 @@ const unitNames = {
     ],
 
 
-    "Basic Mathematics": [
+    "Basic Mathematics":[
 
         "Set",
 
@@ -807,7 +710,7 @@ const unitNames = {
     ],
 
 
-    "JAVA Programming": [
+    "JAVA Programming":[
 
         "Introduction to JAVA",
 
@@ -820,7 +723,7 @@ const unitNames = {
     ],
 
 
-    "Finance": [
+    "Finance":[
 
         "Introduction to Financial Literacy",
 
@@ -833,7 +736,7 @@ const unitNames = {
     ],
 
 
-    "PC Installation": [
+    "PC Installation":[
 
         "CPU Memory orginization Motherboard",
 
@@ -846,7 +749,7 @@ const unitNames = {
     ],
 
 
-    "Urdu": [
+    "Urdu":[
 
         "Unit 1 - Urdu Literature",
 
@@ -861,150 +764,184 @@ const unitNames = {
 };
 
 
-/* ================= CONTINUE ================= */
+
+/* =========================
+   CONTINUE
+========================= */
 
 function continueToNotes(){
 
-    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("loginPage")
+        .style.display = "none";
 
-    document.getElementById("mainPage").style.display = "block";
+    document.getElementById("mainPage")
+        .style.display = "block";
 
-    document.getElementById("unitsPage").style.display = "none";
+    document.getElementById("unitsPage")
+        .style.display = "none";
 
-    document.getElementById("notesPage").style.display = "none";
-
-}
-
-
-/* ================= LOGOUT ================= */
-
-function logout(){
-
-    document.getElementById("mainPage").style.display = "none";
-
-    document.getElementById("unitsPage").style.display = "none";
-
-    document.getElementById("notesPage").style.display = "none";
-
-    document.getElementById("loginPage").style.display = "flex";
+    document.getElementById("notesPage")
+        .style.display = "none";
 
 }
 
 
-/* ================= OPEN SUBJECT ================= */
+
+/* =========================
+   OPEN SUBJECT
+========================= */
 
 function openSubject(subject){
 
     currentSubject = subject;
 
-    document.getElementById("mainPage").style.display = "none";
+    document.getElementById("mainPage")
+        .style.display = "none";
 
-    document.getElementById("unitsPage").style.display = "block";
+    document.getElementById("unitsPage")
+        .style.display = "block";
 
-    document.getElementById("notesPage").style.display = "none";
-
-    document.getElementById("selectedSubject").innerText = subject;
-
-    let unitList = document.getElementById("unitList");
-
-    unitList.innerHTML = "";
+    document.getElementById("notesPage")
+        .style.display = "none";
 
 
-    unitNames[subject].forEach(function(name,index){
+    document.getElementById("subjectTitle")
+        .innerText = subject;
 
-        let unitNumber = index + 1;
 
-        unitList.innerHTML += `
+    let list =
+        document.getElementById("unitList");
 
-            <div
-                class="unit"
-                onclick="openUnit(${unitNumber})"
-            >
+    list.innerHTML = "";
 
-                <h2>
-                    Unit ${unitNumber}
-                </h2>
 
-                <p>
-                    ${name}
-                </p>
+    unitNames[subject].forEach(
+        function(unit,index){
 
-            </div>
+            let card =
+                document.createElement("div");
 
-        `;
+            card.className = "unit-card";
 
-    });
+
+            card.innerHTML =
+
+                "<h3>Unit " +
+                (index + 1) +
+                "</h3>" +
+
+                "<p>" +
+                unit +
+                "</p>";
+
+
+            card.onclick =
+                function(){
+
+                    openUnit(index + 1);
+
+                };
+
+
+            list.appendChild(card);
+
+        }
+    );
 
 }
 
 
-/* ================= OPEN UNIT ================= */
 
-function openUnit(unit){
+/* =========================
+   OPEN UNIT
+========================= */
 
-    currentUnit = "Unit " + unit;
+function openUnit(unitNumber){
 
-    document.getElementById("unitsPage").style.display = "none";
+    currentUnit =
+        "Unit " + unitNumber;
 
-    document.getElementById("notesPage").style.display = "block";
 
-    document.getElementById("notesSubject").innerText =
-        currentSubject;
+    document.getElementById("unitsPage")
+        .style.display = "none";
 
-    document.getElementById("unitTitle").innerText =
-        currentSubject + " - " + currentUnit;
+
+    document.getElementById("mainPage")
+        .style.display = "none";
+
+
+    document.getElementById("notesPage")
+        .style.display = "block";
+
+
+    document.getElementById("savedMessage")
+        .innerText = "";
+
+
+    document.getElementById("notes")
+        .innerHTML = "";
 
 
     let key =
         encodeURIComponent(
-            currentSubject + "_" + currentUnit
+            currentSubject +
+            "_" +
+            currentUnit
         );
-
-
-    document.getElementById("notes").innerHTML = "";
-
-    document.getElementById("savedMessage").innerText = "";
 
 
     db.ref("notes/" + key)
         .once("value")
 
-        .then(function(snapshot){
+        .then(
+            function(snapshot){
 
-            let savedNotes = snapshot.val();
+                let savedNotes =
+                    snapshot.val();
 
-            if(savedNotes !== null){
 
-                document.getElementById("notes").innerHTML =
-                    savedNotes;
+                if(savedNotes !== null){
+
+                    document.getElementById("notes")
+                        .innerHTML =
+                        savedNotes;
+
+                }
 
             }
+        )
 
-        })
+        .catch(
+            function(error){
 
-        .catch(function(error){
+                document.getElementById("savedMessage")
+                    .innerText =
+                    "❌ Load Error: " +
+                    error.message;
 
-            console.log(
-                "Notes load error:",
-                error
-            );
-
-        });
+            }
+        );
 
 }
 
 
-/* ================= SAVE NOTES ================= */
+
+/* =========================
+   SAVE NOTES
+========================= */
 
 function saveNotes(){
 
     let notes =
-        document.getElementById("notes").innerHTML;
+        document.getElementById("notes")
+        .innerHTML;
 
 
     let key =
         encodeURIComponent(
-            currentSubject + "_" + currentUnit
+            currentSubject +
+            "_" +
+            currentUnit
         );
 
 
@@ -1012,59 +949,135 @@ function saveNotes(){
 
         .set(notes)
 
-        .then(function(){
+        .then(
+            function(){
 
-            document.getElementById("savedMessage")
-                .innerText =
-                "✓ Notes Saved Online!";
+                document.getElementById("savedMessage")
+                    .innerText =
+                    "✓ Notes Saved Online!";
 
-        })
+            }
+        )
 
-        .catch(function(error){
+        .catch(
+            function(error){
 
-            document.getElementById("savedMessage")
-                .innerText =
-                "❌ Save Error: " + error.message;
+                document.getElementById("savedMessage")
+                    .innerText =
+                    "❌ Save Error: " +
+                    error.message;
 
-        });
+            }
+        );
 
 }
 
 
-/* ================= BACK TO SUBJECTS ================= */
+
+/* =========================
+   TEXT FORMATTING
+========================= */
+
+function formatText(command){
+
+    document.execCommand(
+        command,
+        false,
+        null
+    );
+
+    document.getElementById("notes")
+        .focus();
+
+}
+
+
+
+/* =========================
+   TEXT COLOR
+========================= */
+
+function changeColor(color){
+
+    if(color === ""){
+
+        return;
+
+    }
+
+
+    document.execCommand(
+        "foreColor",
+        false,
+        color
+    );
+
+
+    document.getElementById("notes")
+        .focus();
+
+}
+
+
+
+/* =========================
+   BACK TO SUBJECTS
+========================= */
 
 function backToSubjects(){
 
-    document.getElementById("unitsPage").style.display = "none";
+    document.getElementById("unitsPage")
+        .style.display = "none";
 
-    document.getElementById("notesPage").style.display = "none";
+    document.getElementById("notesPage")
+        .style.display = "none";
 
-    document.getElementById("mainPage").style.display = "block";
+    document.getElementById("mainPage")
+        .style.display = "block";
 
 }
 
 
-/* ================= BACK TO UNITS ================= */
+
+/* =========================
+   BACK TO UNITS
+========================= */
 
 function backToUnits(){
 
-    document.getElementById("notesPage").style.display = "none";
+    document.getElementById("notesPage")
+        .style.display = "none";
 
-    document.getElementById("unitsPage").style.display = "block";
+    document.getElementById("unitsPage")
+        .style.display = "block";
 
 }
-function formatText(command) {
-    document.execCommand(command, false, null);
-    document.getElementById("notes").focus();
+
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout(){
+
+    document.getElementById("mainPage")
+        .style.display = "none";
+
+    document.getElementById("unitsPage")
+        .style.display = "none";
+
+    document.getElementById("notesPage")
+        .style.display = "none";
+
+    document.getElementById("loginPage")
+        .style.display = "flex";
+
 }
 
-function changeColor(color) {
-    if (color === "") return;
 
-    document.execCommand("foreColor", false, color);
-    document.getElementById("notes").focus();
-}
 </script>
 
 </body>
+
 </html>
