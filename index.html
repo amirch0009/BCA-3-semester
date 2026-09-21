@@ -203,6 +203,66 @@ body{
 .notes-editor:focus{
     border-color:#2563eb;
 }
+@media (max-width: 600px){
+
+    .notes-editor{
+        width: 100%;
+        min-height: 75vh;
+        box-sizing: border-box;
+        font-size: 17px;
+        padding: 15px;
+    }
+
+    .toolbar{
+        width: 100%;
+        gap: 5px;
+    }
+
+    .toolbar button,
+    .toolbar select{
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+}
+@media (max-width: 600px){
+
+    #notesPage{
+        width:100%;
+        min-height:100vh;
+        padding:10px;
+        box-sizing:border-box;
+    }
+
+    #notesPage h2{
+        font-size:22px;
+        margin:5px 0 10px;
+    }
+
+    #notesPage .notes-editor{
+        min-height:75vh;
+        width:100%;
+    }
+}
+@media (max-width: 600px){
+
+    body{
+        margin:0;
+        padding:0;
+    }
+
+    #notesPage{
+        padding:5px;
+        margin:0;
+    }
+
+    #notesPage .notes-editor{
+        min-height:calc(100vh - 150px);
+        width:100%;
+        box-sizing:border-box;
+        border-radius:5px;
+    }
+}
 /* ================= MAIN PAGE ================= */
 
 #mainPage{
@@ -899,7 +959,7 @@ function openUnit(unit){
         );
 
 
-    document.getElementById("notes").innerHTML= "";
+    document.getElementById("notes").innerHTML = "";
 
     document.getElementById("savedMessage").innerText = "";
 
