@@ -171,7 +171,38 @@ body{
     }
 
 }
+.toolbar{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:10px;
+}
 
+.toolbar button,
+.toolbar select{
+    padding:8px 12px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    background:white;
+    cursor:pointer;
+}
+
+.notes-editor{
+    width:100%;
+    min-height:400px;
+    padding:18px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    background:white;
+    color:#111;
+    font-size:16px;
+    line-height:1.6;
+    outline:none;
+}
+
+.notes-editor:focus{
+    border-color:#2563eb;
+}
 /* ================= MAIN PAGE ================= */
 
 #mainPage{
@@ -607,27 +638,32 @@ textarea{
 
             <h2 id="unitTitle"></h2>
 
-            <textarea
-                id="notes"
-                placeholder="Write your notes here..."
-            ></textarea>
+           <div class="toolbar">
 
-            <br>
+    <button onclick="formatText('bold')"><b>B</b></button>
 
-            <button
-                class="save-btn"
-                onclick="saveNotes()"
-            >
-                💾 Save Notes
-            </button>
+    <button onclick="formatText('italic')"><i>I</i></button>
 
-            <span
-                class="saved"
-                id="savedMessage"
-            ></span>
+    <button onclick="formatText('underline')"><u>U</u></button>
 
-        </div>
+    <select onchange="changeColor(this.value)">
+        <option value="">Text Color</option>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="purple">Purple</option>
+        <option value="black">Black</option>
+    </select>
 
+</div>
+
+<div
+    id="notes"
+    class="notes-editor"
+    contenteditable="true"
+>
+    Write your notes here...
+</div>
     </div>
 
 </div>
@@ -955,7 +991,17 @@ function backToUnits(){
     document.getElementById("unitsPage").style.display = "block";
 
 }
+function formatText(command) {
+    document.execCommand(command, false, null);
+    document.getElementById("notes").focus();
+}
 
+function changeColor(color) {
+    if (color === "") return;
+
+    document.execCommand("foreColor", false, color);
+    document.getElementById("notes").focus();
+}
 </script>
 
 </body>
