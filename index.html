@@ -899,7 +899,7 @@ function openUnit(unit){
         );
 
 
-    document.getElementById("notes").value = "";
+    document.getElementById("notes").innerHTML= "";
 
     document.getElementById("savedMessage").innerText = "";
 
@@ -913,7 +913,7 @@ function openUnit(unit){
 
             if(savedNotes !== null){
 
-                document.getElementById("notes").value =
+                document.getElementById("notes").innerHTML =
                     savedNotes;
 
             }
@@ -937,7 +937,7 @@ function openUnit(unit){
 function saveNotes(){
 
     let notes =
-        document.getElementById("notes").value;
+        document.getElementById("notes").innerHTML;
 
 
     let key =
