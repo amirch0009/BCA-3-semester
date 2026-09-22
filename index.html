@@ -1,539 +1,1064 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
 <title>Aamir Notes | BCA 3 Semester</title>
 
-<!-- Firebase -->
+
+<!-- ================= FIREBASE ================= -->
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
 
 <style>
 
-/* =========================
-   GENERAL
-========================= */
+/* =====================================================
+   BASIC
+===================================================== */
 
 *{
     box-sizing:border-box;
 }
 
-body{
-    margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:#050505;
-    color:white;
-    overflow-x:hidden;
+html{
+    scroll-behavior:smooth;
 }
+
+body{
+
+    margin:0;
+
+    font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+    background:#ffffff;
+
+    color:#111111;
+
+    overflow-x:hidden;
+
+}
+
+
+/* =====================================================
+   AAMIR ANIMATED BACKGROUND
+===================================================== */
+
+.aamir-background{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:-1;
+
+    background:#ffffff;
+
+    pointer-events:none;
+
+}
+
+
+.aamir{
+
+    position:absolute;
+
+    white-space:nowrap;
+
+    font-size:55px;
+
+    font-weight:900;
+
+    opacity:.20;
+
+    letter-spacing:3px;
+
+    animation:
+    moveAamir 14s linear infinite;
+
+}
+
+
+.a1{
+    left:-15%;
+    top:3%;
+    color:#ff0000;
+    animation-duration:12s;
+}
+
+.a2{
+    left:20%;
+    top:16%;
+    color:#0066ff;
+    animation-duration:15s;
+}
+
+.a3{
+    left:-10%;
+    top:30%;
+    color:#cc00ff;
+    animation-duration:11s;
+}
+
+.a4{
+    left:25%;
+    top:45%;
+    color:#00aa44;
+    animation-duration:17s;
+}
+
+.a5{
+    left:-15%;
+    top:60%;
+    color:#ff9900;
+    animation-duration:13s;
+}
+
+.a6{
+    left:20%;
+    top:76%;
+    color:#0099cc;
+    animation-duration:16s;
+}
+
+.a7{
+    left:-10%;
+    top:90%;
+    color:#ff0066;
+    animation-duration:14s;
+}
+
+
+@keyframes moveAamir{
+
+    0%{
+        transform:
+        translateX(-20%)
+        rotate(-7deg);
+    }
+
+    50%{
+        transform:
+        translateX(65%)
+        rotate(7deg);
+    }
+
+    100%{
+        transform:
+        translateX(-20%)
+        rotate(-7deg);
+    }
+
+}
+
+
+/* =====================================================
+   COMMON
+===================================================== */
 
 button{
     font-family:inherit;
     cursor:pointer;
 }
 
-/* =========================
-   ANIMATED AAMIR BACKGROUND
-========================= */
 
-.aamir-background{
-    position:fixed;
-    inset:0;
-    overflow:hidden;
-    z-index:-1;
-    background:#030303;
-}
-
-.aamir{
-    position:absolute;
-    font-size:55px;
-    font-weight:900;
-    opacity:.12;
-    animation:moveAamir 12s linear infinite;
-    white-space:nowrap;
-}
-
-.a1{left:-10%;top:5%;color:red;animation-duration:12s;}
-.a2{left:20%;top:18%;color:#00ffff;animation-duration:15s;}
-.a3{left:-5%;top:32%;color:#ff00ff;animation-duration:11s;}
-.a4{left:25%;top:47%;color:#00ff66;animation-duration:17s;}
-.a5{left:-15%;top:62%;color:#ffff00;animation-duration:13s;}
-.a6{left:20%;top:78%;color:#ff6600;animation-duration:16s;}
-.a7{left:-5%;top:91%;color:#0088ff;animation-duration:14s;}
-
-@keyframes moveAamir{
-    0%{
-        transform:translateX(-20%) rotate(-8deg);
-    }
-    50%{
-        transform:translateX(60%) rotate(8deg);
-    }
-    100%{
-        transform:translateX(-20%) rotate(-8deg);
-    }
-}
-
-/* =========================
+/* =====================================================
    WELCOME PAGE
-========================= */
-
-.page{
-    min-height:100vh;
-    width:100%;
-    padding:25px 15px;
-}
+===================================================== */
 
 #welcomePage{
+
     min-height:100vh;
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
-    text-align:center;
+
+    padding:20px;
+
 }
+
 
 .welcome-box{
-    width:95%;
-    max-width:700px;
-    padding:45px 20px;
-    border:2px solid rgba(255,255,255,.2);
-    border-radius:25px;
-    background:rgba(0,0,0,.55);
-    backdrop-filter:blur(8px);
+
+    width:90%;
+
+    max-width:520px;
+
+    padding:30px 18px;
+
+    text-align:center;
+
+    background:
+    rgba(255,255,255,.90);
+
+    border:
+    2px solid rgba(0,0,0,.12);
+
+    border-radius:20px;
+
     box-shadow:
-        0 0 25px rgba(255,0,0,.25),
-        inset 0 0 30px rgba(255,255,255,.03);
+    0 8px 30px
+    rgba(0,0,0,.15);
+
 }
+
 
 .welcome-title{
-    font-size:clamp(30px,7vw,65px);
+
+    font-size:
+    clamp(25px,6vw,45px);
+
     font-weight:900;
-    letter-spacing:2px;
-    margin-bottom:30px;
-    animation:titleGlow 3s infinite alternate;
+
+    color:#111;
+
+    line-height:1.15;
+
+    margin-bottom:25px;
+
+    text-shadow:
+    0 0 8px
+    rgba(255,0,0,.35);
+
 }
 
-@keyframes titleGlow{
-    from{
-        text-shadow:0 0 5px red;
-    }
-    to{
-        text-shadow:
-        0 0 10px red,
-        0 0 25px red,
-        0 0 45px red;
-    }
-}
 
 .continue-btn{
+
     border:none;
-    padding:15px 45px;
-    border-radius:30px;
-    background:#e60000;
+
+    padding:
+    12px 35px;
+
+    border-radius:25px;
+
+    background:#e00000;
+
     color:white;
-    font-size:18px;
+
+    font-size:17px;
+
     font-weight:bold;
-    box-shadow:0 0 20px rgba(255,0,0,.5);
+
+    box-shadow:
+    0 5px 18px
+    rgba(255,0,0,.30);
+
     transition:.3s;
+
 }
+
 
 .continue-btn:hover{
+
     transform:scale(1.06);
-    background:#ff1111;
+
+    background:#ff0000;
+
 }
+
 
 .developed{
-    margin-top:30px;
+
+    margin-top:20px;
+
     color:red;
-    font-size:18px;
+
+    font-size:16px;
+
     font-weight:bold;
+
 }
 
-/* =========================
-   COMMON HEADER
-========================= */
 
-.top-header{
-    width:100%;
-    max-width:1200px;
-    margin:auto;
-    text-align:center;
-    padding:20px 10px;
-}
-
-.top-header h1{
-    margin:5px 0;
-    font-size:clamp(27px,6vw,48px);
-    color:white;
-    text-shadow:
-        0 0 10px red,
-        0 0 25px red;
-}
-
-.top-header p{
-    margin:8px 0;
-    color:#aaa;
-}
-
-.developed-small{
-    color:red;
-    font-weight:bold;
-    margin-top:10px;
-}
-
-/* =========================
-   SUBJECTS
-========================= */
+/* =====================================================
+   MAIN PAGE
+===================================================== */
 
 #mainPage{
+
     display:none;
+
+    min-height:100vh;
+
 }
+
+
+.top-header{
+
+    width:100%;
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:
+    25px 15px 10px;
+
+    text-align:center;
+
+}
+
+
+.top-header h1{
+
+    margin:5px 0;
+
+    font-size:
+    clamp(27px,6vw,48px);
+
+    color:#111;
+
+    text-shadow:
+    0 0 10px
+    rgba(255,0,0,.35);
+
+}
+
+
+.top-header p{
+
+    margin:8px 0;
+
+    color:#444;
+
+}
+
+
+.developed-small{
+
+    color:red;
+
+    font-weight:bold;
+
+    margin-top:10px;
+
+}
+
+
+/* =====================================================
+   SUBJECT CARDS
+===================================================== */
 
 .subject-container{
+
     width:100%;
+
     max-width:1200px;
-    margin:20px auto 80px;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
+
+    margin:
+    20px auto 70px;
+
     padding:10px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
 }
+
 
 .subject-card{
-    min-height:180px;
-    border-radius:22px;
+
+    min-height:185px;
+
     padding:25px 15px;
+
     text-align:center;
-    background:rgba(15,15,15,.85);
-    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:20px;
+
+    background:
+    rgba(255,255,255,.92);
+
+    border:
+    1px solid #dddddd;
+
+    box-shadow:
+    0 7px 20px
+    rgba(0,0,0,.10);
+
     transition:.3s;
-    box-shadow:0 0 15px rgba(255,0,0,.08);
+
 }
+
 
 .subject-card:hover{
-    transform:translateY(-8px) scale(1.02);
+
+    transform:
+    translateY(-7px);
+
     border-color:red;
-    box-shadow:0 0 25px rgba(255,0,0,.35);
+
+    box-shadow:
+    0 10px 28px
+    rgba(255,0,0,.22);
+
 }
+
 
 .subject-icon{
-    font-size:50px;
-    margin-bottom:15px;
+
+    font-size:48px;
+
+    margin-bottom:12px;
+
 }
+
 
 .subject-card h2{
-    margin:5px 0 10px;
-    font-size:21px;
+
+    margin:
+    5px 0 10px;
+
+    font-size:20px;
+
+    color:#111;
+
 }
+
 
 .subject-card p{
-    color:#aaa;
+
     margin:0;
+
+    color:#666;
+
 }
+
 
 .subject-btn{
-    margin-top:18px;
-    padding:10px 25px;
-    border:1px solid red;
-    background:#160000;
-    color:white;
+
+    margin-top:17px;
+
+    padding:
+    9px 22px;
+
+    border:
+    1px solid red;
+
     border-radius:20px;
+
+    background:#fff;
+
+    color:#d00000;
+
     font-weight:bold;
+
 }
 
-/* =========================
+
+.subject-btn:hover{
+
+    background:#e00000;
+
+    color:white;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    text-align:center;
+
+    padding:30px 10px;
+
+    color:#777;
+
+}
+
+
+.footer span{
+
+    color:red;
+
+    font-weight:bold;
+
+}
+
+
+/* =====================================================
    UNITS PAGE
-========================= */
+===================================================== */
 
 #unitsPage{
+
     display:none;
+
+    min-height:100vh;
+
 }
+
 
 .page-content{
+
+    width:100%;
+
     max-width:1100px;
+
     margin:auto;
-    padding:10px;
+
+    padding:
+    20px 12px 50px;
+
 }
+
 
 .back-btn{
+
     border:none;
-    background:#222;
-    color:white;
-    padding:11px 20px;
+
+    padding:
+    10px 20px;
+
     border-radius:20px;
-    margin-bottom:20px;
+
+    background:#222;
+
+    color:white;
+
     font-weight:bold;
+
 }
+
 
 .back-btn:hover{
+
     background:#e00000;
+
 }
+
 
 .units-title{
+
     text-align:center;
-    font-size:clamp(25px,6vw,42px);
-    margin:10px 0 30px;
-    text-shadow:0 0 15px red;
+
+    font-size:
+    clamp(25px,6vw,42px);
+
+    margin:
+    20px 0 30px;
+
+    color:#111;
+
+    text-shadow:
+    0 0 10px
+    rgba(255,0,0,.30);
+
 }
+
 
 .units-container{
+
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(230px,1fr));
+
     gap:20px;
+
 }
+
 
 .unit-card{
+
     min-height:180px;
+
     padding:25px 20px;
+
     border-radius:20px;
-    background:rgba(15,15,15,.9);
-    border:1px solid #333;
+
+    background:
+    rgba(255,255,255,.94);
+
+    border:
+    1px solid #ddd;
+
+    box-shadow:
+    0 7px 20px
+    rgba(0,0,0,.10);
+
     cursor:pointer;
+
     transition:.3s;
+
 }
+
 
 .unit-card:hover{
-    transform:translateY(-7px);
+
+    transform:
+    translateY(-7px);
+
     border-color:red;
-    box-shadow:0 0 25px rgba(255,0,0,.3);
+
+    box-shadow:
+    0 10px 25px
+    rgba(255,0,0,.20);
+
 }
+
 
 .unit-card h3{
-    color:red;
-    font-size:22px;
+
     margin-top:0;
+
+    color:red;
+
+    font-size:22px;
+
 }
+
 
 .unit-card p{
-    color:white;
+
+    color:#222;
+
     line-height:1.5;
+
     font-size:16px;
+
 }
 
-/* =========================
+
+/* =====================================================
    NOTES PAGE
-========================= */
+===================================================== */
 
 #notesPage{
+
     display:none;
+
+    min-height:100vh;
+
 }
+
 
 .notes-wrapper{
+
     width:100%;
+
     max-width:1200px;
+
     margin:auto;
-    padding:10px;
+
+    padding:
+    20px 10px 50px;
+
 }
+
 
 .notes-header{
+
     text-align:center;
-    margin-bottom:15px;
+
+    margin:
+    15px 0;
+
 }
+
 
 .notes-header h2{
-    font-size:clamp(22px,5vw,38px);
+
     margin:10px 0;
-    color:red;
-    text-shadow:0 0 15px red;
+
+    color:#d00000;
+
+    font-size:
+    clamp(21px,5vw,36px);
+
 }
 
-/* TOOLBAR */
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
 
 .toolbar{
+
     display:flex;
+
     flex-wrap:wrap;
+
     gap:7px;
+
     padding:10px;
-    background:#111;
-    border:1px solid #333;
-    border-radius:12px 12px 0 0;
+
+    background:#171717;
+
+    border-radius:
+    12px 12px 0 0;
+
 }
+
 
 .toolbar button,
 .toolbar select{
+
     min-height:38px;
-    padding:7px 11px;
-    border:1px solid #444;
+
+    padding:
+    7px 11px;
+
+    border:
+    1px solid #444;
+
     border-radius:7px;
-    background:#222;
+
+    background:#282828;
+
     color:white;
+
     font-weight:bold;
+
 }
+
 
 .toolbar button:hover,
 .toolbar select:hover{
+
+    background:#500000;
+
     border-color:red;
-    background:#300000;
+
 }
+
+
+.color-label{
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    padding-left:5px;
+
+    font-size:13px;
+
+}
+
 
 .color-input{
+
     width:42px;
+
     height:38px;
+
     padding:2px;
-    border:1px solid #444;
-    background:#222;
+
+    border:
+    1px solid #444;
+
     border-radius:7px;
+
 }
 
-/* EDITOR */
+
+/* =====================================================
+   NOTES EDITOR
+===================================================== */
 
 .notes-editor{
+
     width:100%;
+
     min-height:65vh;
-    background:white;
-    color:#111;
+
     padding:25px;
+
+    background:white;
+
+    color:#111;
+
     font-size:18px;
+
     line-height:1.65;
+
     outline:none;
-    border:2px solid #333;
+
+    border:
+    2px solid #333;
+
     border-top:none;
-    border-radius:0 0 12px 12px;
+
+    border-radius:
+    0 0 12px 12px;
+
     overflow:auto;
+
 }
+
 
 .notes-editor:focus{
+
     border-color:red;
+
 }
+
 
 .notes-editor:empty:before{
-    content:"Write your notes here...";
-    color:#888;
+
+    content:
+    "Write your notes here...";
+
+    color:#999;
+
 }
 
-/* ACTION BUTTONS */
+
+/* =====================================================
+   NOTES ACTIONS
+===================================================== */
 
 .notes-actions{
+
     display:flex;
+
     flex-wrap:wrap;
+
     justify-content:center;
+
     gap:12px;
+
     margin:20px 0;
+
 }
+
 
 .action-btn{
-    border:none;
-    padding:13px 25px;
+
+    border:
+    1px solid #555;
+
+    padding:
+    12px 24px;
+
     border-radius:25px;
-    font-weight:bold;
-    color:white;
+
     background:#222;
-    border:1px solid #555;
+
+    color:white;
+
+    font-weight:bold;
+
 }
+
 
 .action-btn:hover{
+
     background:#e00000;
+
     border-color:red;
+
 }
+
 
 .save-btn{
-    background:#b00000;
+
+    background:#c00000;
+
     border-color:red;
-    box-shadow:0 0 15px rgba(255,0,0,.3);
+
 }
+
 
 .saved-message{
+
     text-align:center;
+
     min-height:25px;
-    color:#00ff66;
+
     font-weight:bold;
+
 }
 
-/* =========================
-   FULLSCREEN EDITOR
-========================= */
+
+/* =====================================================
+   FULL SCREEN
+===================================================== */
 
 .notes-wrapper.fullscreen-mode{
+
     position:fixed;
+
     inset:0;
+
     z-index:9999;
+
     max-width:none;
-    background:#050505;
+
+    background:white;
+
     padding:10px;
+
+    overflow:auto;
+
 }
 
-.notes-wrapper.fullscreen-mode .notes-editor{
-    min-height:calc(100vh - 160px);
+
+.notes-wrapper.fullscreen-mode
+.notes-editor{
+
+    min-height:
+    calc(100vh - 160px);
+
 }
 
-/* =========================
-   FOOTER
-========================= */
 
-.footer{
-    text-align:center;
-    padding:30px 10px;
-    color:#777;
-}
-
-.footer span{
-    color:red;
-    font-weight:bold;
-}
-
-/* =========================
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media(max-width:600px){
 
     .welcome-box{
-        padding:35px 15px;
+
+        width:88%;
+
+        padding:
+        25px 15px;
+
+        border-radius:18px;
+
     }
+
+
+    .welcome-title{
+
+        font-size:28px;
+
+        margin-bottom:20px;
+
+    }
+
+
+    .continue-btn{
+
+        padding:
+        11px 30px;
+
+        font-size:16px;
+
+    }
+
 
     .subject-container{
+
         grid-template-columns:1fr;
+
     }
+
 
     .units-container{
+
         grid-template-columns:1fr;
+
     }
 
+
     .toolbar{
+
         gap:5px;
+
     }
+
 
     .toolbar button,
     .toolbar select{
+
         font-size:13px;
-        padding:7px 8px;
+
+        padding:
+        6px 8px;
+
     }
 
+
     .notes-editor{
+
         min-height:60vh;
+
         padding:15px;
+
         font-size:17px;
+
     }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<!-- =========================
-     ANIMATED BACKGROUND
-========================= -->
+
+<!-- =====================================================
+     AAMIR BACKGROUND
+===================================================== -->
 
 <div class="aamir-background">
 
-    <div class="aamir a1">AAMIR AAMIR AAMIR</div>
-    <div class="aamir a2">AAMIR AAMIR AAMIR</div>
-    <div class="aamir a3">AAMIR AAMIR AAMIR</div>
-    <div class="aamir a4">AAMIR AAMIR AAMIR</div>
-    <div class="aamir a5">AAMIR AAMIR AAMIR</div>
-    <div class="aamir a6">AAMIR AAMIR AAMIR</div>
-    <div class="aamir a7">AAMIR AAMIR AAMIR</div>
+    <div class="aamir a1">
+        AAMIR AAMIR AAMIR
+    </div>
+
+    <div class="aamir a2">
+        AAMIR AAMIR AAMIR
+    </div>
+
+    <div class="aamir a3">
+        AAMIR AAMIR AAMIR
+    </div>
+
+    <div class="aamir a4">
+        AAMIR AAMIR AAMIR
+    </div>
+
+    <div class="aamir a5">
+        AAMIR AAMIR AAMIR
+    </div>
+
+    <div class="aamir a6">
+        AAMIR AAMIR AAMIR
+    </div>
+
+    <div class="aamir a7">
+        AAMIR AAMIR AAMIR
+    </div>
 
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      WELCOME PAGE
-========================= -->
+===================================================== -->
 
-<section id="welcomePage" class="page">
+<section id="welcomePage">
 
     <div class="welcome-box">
 
@@ -541,10 +1066,15 @@ button{
             WELCOME TO AAMIR NOTES
         </div>
 
-        <button class="continue-btn"
-                onclick="continueToNotes()">
+
+        <button
+            class="continue-btn"
+            onclick="continueToNotes()">
+
             CONTINUE
+
         </button>
+
 
         <div class="developed">
             Developed by Aamir
@@ -555,11 +1085,11 @@ button{
 </section>
 
 
-<!-- =========================
-     MAIN SUBJECT PAGE
-========================= -->
+<!-- =====================================================
+     SUBJECT PAGE
+===================================================== -->
 
-<section id="mainPage" class="page">
+<section id="mainPage">
 
     <div class="top-header">
 
@@ -578,38 +1108,51 @@ button{
     </div>
 
 
-    <div class="subject-container"
-         id="subjectContainer">
+    <div
+        class="subject-container"
+        id="subjectContainer">
     </div>
 
 
     <div class="footer">
+
         BCA 3 Semester Notes —
-        <span>Developed by Aamir</span>
+
+        <span>
+            Developed by Aamir
+        </span>
+
     </div>
 
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      UNITS PAGE
-========================= -->
+===================================================== -->
 
-<section id="unitsPage" class="page">
+<section id="unitsPage">
 
     <div class="page-content">
 
-        <button class="back-btn"
-                onclick="backToSubjects()">
+        <button
+            class="back-btn"
+            onclick="backToSubjects()">
+
             ← Back to Subjects
+
         </button>
 
-        <h1 class="units-title"
+
+        <h1
+            class="units-title"
             id="unitsSubjectName">
         </h1>
 
-        <div class="units-container"
-             id="unitsContainer">
+
+        <div
+            class="units-container"
+            id="unitsContainer">
         </div>
 
     </div>
@@ -617,19 +1160,25 @@ button{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      NOTES PAGE
-========================= -->
+===================================================== -->
 
-<section id="notesPage" class="page">
+<section id="notesPage">
 
-    <div class="notes-wrapper"
-         id="notesWrapper">
+    <div
+        class="notes-wrapper"
+        id="notesWrapper">
 
-        <button class="back-btn"
-                onclick="backToUnits()">
+
+        <button
+            class="back-btn"
+            onclick="backToUnits()">
+
             ← Back to Units
+
         </button>
+
 
         <div class="notes-header">
 
@@ -644,46 +1193,81 @@ button{
 
         <div class="toolbar">
 
-            <button onclick="formatText('bold')">
+
+            <button
+                onclick="formatText('bold')">
+
                 B
+
             </button>
 
-            <button onclick="formatText('italic')">
+
+            <button
+                onclick="formatText('italic')">
+
                 <i>I</i>
+
             </button>
 
-            <button onclick="formatText('underline')">
+
+            <button
+                onclick="formatText('underline')">
+
                 <u>U</u>
+
             </button>
 
-            <button onclick="formatText('strikeThrough')">
+
+            <button
+                onclick="formatText('strikeThrough')">
+
                 <s>S</s>
+
             </button>
 
 
-            <button onclick="formatText('justifyLeft')">
+            <button
+                onclick="formatText('justifyLeft')">
+
                 Left
+
             </button>
 
-            <button onclick="formatText('justifyCenter')">
+
+            <button
+                onclick="formatText('justifyCenter')">
+
                 Center
+
             </button>
 
-            <button onclick="formatText('justifyRight')">
+
+            <button
+                onclick="formatText('justifyRight')">
+
                 Right
+
             </button>
 
 
-            <button onclick="formatText('insertUnorderedList')">
+            <button
+                onclick="formatText('insertUnorderedList')">
+
                 • List
+
             </button>
 
-            <button onclick="formatText('insertOrderedList')">
+
+            <button
+                onclick="formatText('insertOrderedList')">
+
                 1. List
+
             </button>
 
 
-            <select onchange="changeFontSize(this.value)">
+            <select
+                onchange="changeFontSize(this.value)">
 
                 <option value="">
                     Font Size
@@ -708,60 +1292,78 @@ button{
             </select>
 
 
-            <span style="color:#aaa;">
+            <span class="color-label">
                 Text
             </span>
 
-            <input type="color"
-                   class="color-input"
-                   value="#ff0000"
-                   onchange="changeTextColor(this.value)">
+
+            <input
+                type="color"
+                class="color-input"
+                value="#ff0000"
+                onchange="changeTextColor(this.value)">
 
 
-            <span style="color:#aaa;">
+            <span class="color-label">
                 Highlight
             </span>
 
-            <input type="color"
-                   class="color-input"
-                   value="#ffff00"
-                   onchange="changeHighlight(this.value)">
+
+            <input
+                type="color"
+                class="color-input"
+                value="#ffff00"
+                onchange="changeHighlight(this.value)">
 
         </div>
 
 
-        <!-- NOTES EDITOR -->
+        <!-- EDITOR -->
 
-        <div id="notes"
-             class="notes-editor"
-             contenteditable="true">
+        <div
+            id="notes"
+            class="notes-editor"
+            contenteditable="true">
         </div>
 
 
-        <!-- ACTION BUTTONS -->
+        <!-- BUTTONS -->
 
         <div class="notes-actions">
 
-            <button class="action-btn save-btn"
-                    onclick="saveNotes()">
+
+            <button
+                class="action-btn save-btn"
+                onclick="saveNotes()">
+
                 💾 Save Notes
+
             </button>
 
-            <button class="action-btn"
-                    onclick="clearEditor()">
+
+            <button
+                class="action-btn"
+                onclick="clearEditor()">
+
                 Clear
+
             </button>
 
-            <button class="action-btn"
-                    onclick="toggleFullscreen()">
+
+            <button
+                class="action-btn"
+                onclick="toggleFullscreen()">
+
                 ⛶ Full Screen
+
             </button>
 
         </div>
 
 
-        <div id="savedMessage"
-             class="saved-message">
+        <div
+            id="savedMessage"
+            class="saved-message">
         </div>
 
     </div>
@@ -777,7 +1379,31 @@ button{
 
 const firebaseConfig = {
 
-    apiKey: "YOUR_API_KEY_HERE",
+    apiKey:
+        "<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBCjMdAhbwSVtBbWDFTSqWr6u3xo9M-WTE",
+    authDomain: "bca-3-semester.firebaseapp.com",
+    databaseURL: "https://bca-3-semester-default-rtdb.firebaseio.com",
+    projectId: "bca-3-semester",
+    storageBucket: "bca-3-semester.firebasestorage.app",
+    messagingSenderId: "977366533839",
+    appId: "1:977366533839:web:dd68b77c64522dd40459ba",
+    measurementId: "G-0RFGCXY6G8"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>",
 
     authDomain:
         "bca-3-semester.firebaseapp.com",
@@ -800,22 +1426,23 @@ const firebaseConfig = {
 };
 
 
-/* =====================================================
-   FIREBASE INITIALIZATION
-===================================================== */
-
 let db = null;
+
 
 try{
 
-    firebase.initializeApp(firebaseConfig);
+    firebase.initializeApp(
+        firebaseConfig
+    );
 
     db = firebase.database();
 
-}catch(error){
+}
+
+catch(error){
 
     console.error(
-        "Firebase initialization error:",
+        "Firebase Error:",
         error
     );
 
@@ -832,7 +1459,7 @@ let currentUnit = "";
 
 
 /* =====================================================
-   SUBJECT DATA
+   SUBJECTS
 ===================================================== */
 
 const subjects = [
@@ -858,7 +1485,9 @@ const subjects = [
     },
 
     {
-        name:"PC Software Installation & Troubleshooting",
+        name:
+        "PC Software Installation & Troubleshooting",
+
         icon:"🖥️"
     },
 
@@ -871,10 +1500,11 @@ const subjects = [
 
 
 /* =====================================================
-   UNIT / CHAPTER DATA
+   UNITS
 ===================================================== */
 
 const unitNames = {
+
 
     "Data Structures":[
 
@@ -957,22 +1587,30 @@ const unitNames = {
 
 
 /* =====================================================
-   CONTINUE BUTTON
+   CONTINUE
 ===================================================== */
 
 function continueToNotes(){
 
-    document.getElementById("welcomePage")
-        .style.display = "none";
+    document.getElementById(
+        "welcomePage"
+    ).style.display = "none";
 
-    document.getElementById("mainPage")
-        .style.display = "block";
 
-    document.getElementById("unitsPage")
-        .style.display = "none";
+    document.getElementById(
+        "mainPage"
+    ).style.display = "block";
 
-    document.getElementById("notesPage")
-        .style.display = "none";
+
+    document.getElementById(
+        "unitsPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "notesPage"
+    ).style.display = "none";
+
 
     window.scrollTo(0,0);
 
@@ -980,13 +1618,16 @@ function continueToNotes(){
 
 
 /* =====================================================
-   CREATE SUBJECT CARDS
+   CREATE SUBJECTS
 ===================================================== */
 
 function createSubjects(){
 
     const container =
-        document.getElementById("subjectContainer");
+        document.getElementById(
+            "subjectContainer"
+        );
+
 
     container.innerHTML = "";
 
@@ -995,6 +1636,7 @@ function createSubjects(){
 
         const card =
             document.createElement("div");
+
 
         card.className =
             "subject-card";
@@ -1023,7 +1665,9 @@ function createSubjects(){
 
         card.onclick = function(){
 
-            openSubject(subject.name);
+            openSubject(
+                subject.name
+            );
 
         };
 
@@ -1044,22 +1688,31 @@ function openSubject(subject){
     currentSubject = subject;
 
 
-    document.getElementById("mainPage")
-        .style.display = "none";
-
-    document.getElementById("unitsPage")
-        .style.display = "block";
-
-    document.getElementById("notesPage")
-        .style.display = "none";
+    document.getElementById(
+        "mainPage"
+    ).style.display = "none";
 
 
-    document.getElementById("unitsSubjectName")
-        .innerText = subject;
+    document.getElementById(
+        "unitsPage"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "notesPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "unitsSubjectName"
+    ).innerText = subject;
 
 
     const container =
-        document.getElementById("unitsContainer");
+        document.getElementById(
+            "unitsContainer"
+        );
+
 
     container.innerHTML = "";
 
@@ -1068,7 +1721,10 @@ function openSubject(subject){
         function(name,index){
 
             const card =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
+
 
             card.className =
                 "unit-card";
@@ -1097,7 +1753,9 @@ function openSubject(subject){
             };
 
 
-            container.appendChild(card);
+            container.appendChild(
+                card
+            );
 
         }
     );
@@ -1112,57 +1770,74 @@ function openSubject(subject){
    OPEN UNIT
 ===================================================== */
 
-function openUnit(unitNumber,unitName){
+function openUnit(
+    unitNumber,
+    unitName
+){
 
     currentUnit =
         "Unit " + unitNumber;
 
 
-    document.getElementById("unitsPage")
-        .style.display = "none";
-
-    document.getElementById("notesPage")
-        .style.display = "block";
+    document.getElementById(
+        "unitsPage"
+    ).style.display = "none";
 
 
-    document.getElementById("notesTitle")
-        .innerText =
-        currentSubject +
-        " • Unit " +
-        unitNumber +
-        " • " +
-        unitName;
+    document.getElementById(
+        "notesPage"
+    ).style.display = "block";
 
 
-    document.getElementById("notes")
-        .innerHTML = "";
+    document.getElementById(
+        "notesTitle"
+    ).innerText =
+
+        currentSubject
+        + " • Unit "
+        + unitNumber
+        + " • "
+        + unitName;
 
 
-    document.getElementById("savedMessage")
-        .innerText = "";
+    document.getElementById(
+        "notes"
+    ).innerHTML = "";
+
+
+    document.getElementById(
+        "savedMessage"
+    ).innerText = "";
 
 
     loadNotes();
 
+
     window.scrollTo(0,0);
 
 }
 
 
 /* =====================================================
-   BACK TO SUBJECTS
+   BACK SUBJECTS
 ===================================================== */
 
 function backToSubjects(){
 
-    document.getElementById("unitsPage")
-        .style.display = "none";
+    document.getElementById(
+        "unitsPage"
+    ).style.display = "none";
 
-    document.getElementById("notesPage")
-        .style.display = "none";
 
-    document.getElementById("mainPage")
-        .style.display = "block";
+    document.getElementById(
+        "notesPage"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "mainPage"
+    ).style.display = "block";
+
 
     window.scrollTo(0,0);
 
@@ -1170,22 +1845,30 @@ function backToSubjects(){
 
 
 /* =====================================================
-   BACK TO UNITS
+   BACK UNITS
 ===================================================== */
 
 function backToUnits(){
 
-    document.getElementById("notesPage")
-        .style.display = "none";
+    document.getElementById(
+        "notesPage"
+    ).style.display = "none";
 
-    document.getElementById("unitsPage")
-        .style.display = "block";
 
-    document.getElementById("notes")
-        .innerHTML = "";
+    document.getElementById(
+        "unitsPage"
+    ).style.display = "block";
 
-    document.getElementById("savedMessage")
-        .innerText = "";
+
+    document.getElementById(
+        "notes"
+    ).innerHTML = "";
+
+
+    document.getElementById(
+        "savedMessage"
+    ).innerText = "";
+
 
     window.scrollTo(0,0);
 
@@ -1193,7 +1876,7 @@ function backToUnits(){
 
 
 /* =====================================================
-   FORMAT TEXT
+   TEXT FORMATTING
 ===================================================== */
 
 function formatText(command){
@@ -1204,8 +1887,10 @@ function formatText(command){
         null
     );
 
-    document.getElementById("notes")
-        .focus();
+
+    document.getElementById(
+        "notes"
+    ).focus();
 
 }
 
@@ -1222,14 +1907,16 @@ function changeTextColor(color){
         color
     );
 
-    document.getElementById("notes")
-        .focus();
+
+    document.getElementById(
+        "notes"
+    ).focus();
 
 }
 
 
 /* =====================================================
-   HIGHLIGHT COLOR
+   HIGHLIGHT
 ===================================================== */
 
 function changeHighlight(color){
@@ -1253,8 +1940,9 @@ function changeHighlight(color){
     }
 
 
-    document.getElementById("notes")
-        .focus();
+    document.getElementById(
+        "notes"
+    ).focus();
 
 }
 
@@ -1279,8 +1967,9 @@ function changeFontSize(size){
     );
 
 
-    document.getElementById("notes")
-        .focus();
+    document.getElementById(
+        "notes"
+    ).focus();
 
 }
 
@@ -1292,9 +1981,11 @@ function changeFontSize(size){
 function getNotesKey(){
 
     return encodeURIComponent(
-        currentSubject +
-        "_" +
-        currentUnit
+
+        currentSubject
+        + "_"
+        + currentUnit
+
     );
 
 }
@@ -1305,11 +1996,6 @@ function getNotesKey(){
 ===================================================== */
 
 function saveNotes(){
-
-    const notes =
-        document.getElementById("notes")
-        .innerHTML;
-
 
     if(!db){
 
@@ -1323,10 +2009,13 @@ function saveNotes(){
     }
 
 
-    if(!currentSubject || !currentUnit){
+    if(
+        !currentSubject ||
+        !currentUnit
+    ){
 
         showMessage(
-            "Pehle subject aur unit select karo.",
+            "Pehle Subject aur Unit select karo.",
             "red"
         );
 
@@ -1335,30 +2024,40 @@ function saveNotes(){
     }
 
 
+    const notes =
+        document.getElementById(
+            "notes"
+        ).innerHTML;
+
+
     const key =
         getNotesKey();
 
 
-    db.ref("notes/" + key)
-        .set(notes)
-        .then(function(){
+    db.ref(
+        "notes/" + key
+    )
+    .set(notes)
 
-            showMessage(
-                "✓ Notes successfully saved!",
-                "#00ff66"
-            );
+    .then(function(){
 
-        })
-        .catch(function(error){
+        showMessage(
+            "✓ Notes Successfully Saved!",
+            "#008800"
+        );
 
-            console.error(error);
+    })
 
-            showMessage(
-                "❌ Notes save nahi hue.",
-                "red"
-            );
+    .catch(function(error){
 
-        });
+        console.error(error);
+
+        showMessage(
+            "❌ Notes Save nahi hue.",
+            "red"
+        );
+
+    });
 
 }
 
@@ -1381,48 +2080,49 @@ function loadNotes(){
     }
 
 
-    if(!currentSubject || !currentUnit){
-
-        return;
-
-    }
-
-
     const key =
         getNotesKey();
 
 
-    db.ref("notes/" + key)
-        .once("value")
-        .then(function(snapshot){
+    db.ref(
+        "notes/" + key
+    )
+    .once("value")
 
-            const data =
-                snapshot.val();
+    .then(function(snapshot){
+
+        const data =
+            snapshot.val();
 
 
-            if(data !== null){
+        if(data !== null){
 
-                document.getElementById("notes")
-                    .innerHTML = data;
+            document.getElementById(
+                "notes"
+            ).innerHTML = data;
 
-            }else{
+        }
 
-                document.getElementById("notes")
-                    .innerHTML = "";
+        else{
 
-            }
+            document.getElementById(
+                "notes"
+            ).innerHTML = "";
 
-        })
-        .catch(function(error){
+        }
 
-            console.error(error);
+    })
 
-            showMessage(
-                "Notes load nahi ho rahe.",
-                "red"
-            );
+    .catch(function(error){
 
-        });
+        console.error(error);
+
+        showMessage(
+            "Notes load nahi ho rahe.",
+            "red"
+        );
+
+    });
 
 }
 
@@ -1431,14 +2131,20 @@ function loadNotes(){
    MESSAGE
 ===================================================== */
 
-function showMessage(message,color){
+function showMessage(
+    message,
+    color
+){
 
     const element =
-        document.getElementById("savedMessage");
+        document.getElementById(
+            "savedMessage"
+        );
 
 
     element.innerText =
         message;
+
 
     element.style.color =
         color;
@@ -1454,21 +2160,22 @@ function showMessage(message,color){
 
 
 /* =====================================================
-   CLEAR EDITOR
+   CLEAR
 ===================================================== */
 
 function clearEditor(){
 
     const answer =
         confirm(
-            "Kya aap editor ka current text clear karna chahte ho?"
+            "Kya current notes clear karne hain?"
         );
 
 
     if(answer){
 
-        document.getElementById("notes")
-            .innerHTML = "";
+        document.getElementById(
+            "notes"
+        ).innerHTML = "";
 
     }
 
@@ -1482,7 +2189,9 @@ function clearEditor(){
 function toggleFullscreen(){
 
     const wrapper =
-        document.getElementById("notesWrapper");
+        document.getElementById(
+            "notesWrapper"
+        );
 
 
     wrapper.classList.toggle(
@@ -1493,7 +2202,7 @@ function toggleFullscreen(){
 
 
 /* =====================================================
-   START WEBSITE
+   START
 ===================================================== */
 
 createSubjects();
@@ -1501,4 +2210,5 @@ createSubjects();
 </script>
 
 </body>
+
 </html>
