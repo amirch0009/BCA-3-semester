@@ -2,84 +2,88 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-<title>BCA 3 SEM - Aamir Notes</title>
+<title>Aamir Notes | BCA 3 Semester</title>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
 <style>
 
+/* =========================
+   GENERAL
+========================= */
+
 *{
     box-sizing:border-box;
-    margin:0;
-    padding:0;
 }
 
 body{
+    margin:0;
     font-family:Arial, Helvetica, sans-serif;
-    background:white;
-    color:#111;
-    min-height:100vh;
+    background:#050505;
+    color:white;
+    overflow-x:hidden;
+}
+
+button{
+    font-family:inherit;
+    cursor:pointer;
 }
 
 /* =========================
-   AAMIR BACKGROUND
+   ANIMATED AAMIR BACKGROUND
 ========================= */
 
-.aamir-bg{
+.aamir-background{
     position:fixed;
     inset:0;
-    z-index:-2;
     overflow:hidden;
-    pointer-events:none;
+    z-index:-1;
+    background:#030303;
 }
 
-.aamir-bg span{
+.aamir{
     position:absolute;
-    color:rgba(255,0,0,0.08);
-    font-size:70px;
+    font-size:55px;
     font-weight:900;
-    transform:rotate(-25deg);
+    opacity:.12;
     animation:moveAamir 12s linear infinite;
     white-space:nowrap;
 }
 
-.aamir-bg span:nth-child(1){top:5%;left:-5%;}
-.aamir-bg span:nth-child(2){top:20%;left:25%;animation-delay:2s;}
-.aamir-bg span:nth-child(3){top:40%;left:-10%;animation-delay:4s;}
-.aamir-bg span:nth-child(4){top:60%;left:30%;animation-delay:6s;}
-.aamir-bg span:nth-child(5){top:80%;left:-5%;animation-delay:8s;}
-.aamir-bg span:nth-child(6){top:92%;left:35%;animation-delay:10s;}
+.a1{left:-10%;top:5%;color:red;animation-duration:12s;}
+.a2{left:20%;top:18%;color:#00ffff;animation-duration:15s;}
+.a3{left:-5%;top:32%;color:#ff00ff;animation-duration:11s;}
+.a4{left:25%;top:47%;color:#00ff66;animation-duration:17s;}
+.a5{left:-15%;top:62%;color:#ffff00;animation-duration:13s;}
+.a6{left:20%;top:78%;color:#ff6600;animation-duration:16s;}
+.a7{left:-5%;top:91%;color:#0088ff;animation-duration:14s;}
 
 @keyframes moveAamir{
-    0%{transform:translateX(-20px) rotate(-25deg);}
-    50%{transform:translateX(50px) rotate(-25deg);}
-    100%{transform:translateX(-20px) rotate(-25deg);}
-}
-
-/* =========================
-   SIDE BRANDING
-========================= */
-
-.side-brand{
-    position:fixed;
-    left:0;
-    top:50%;
-    transform:translateY(-50%);
-    writing-mode:vertical-rl;
-    text-orientation:mixed;
-    background:#111;
-    color:white;
-    padding:15px 8px;
-    border-radius:0 12px 12px 0;
-    font-size:12px;
-    font-weight:bold;
-    letter-spacing:2px;
-    z-index:50;
+    0%{
+        transform:translateX(-20%) rotate(-8deg);
+    }
+    50%{
+        transform:translateX(60%) rotate(8deg);
+    }
+    100%{
+        transform:translateX(-20%) rotate(-8deg);
+    }
 }
 
 /* =========================
    WELCOME PAGE
 ========================= */
+
+.page{
+    min-height:100vh;
+    width:100%;
+    padding:25px 15px;
+}
 
 #welcomePage{
     min-height:100vh;
@@ -87,229 +91,224 @@ body{
     justify-content:center;
     align-items:center;
     text-align:center;
-    padding:25px;
 }
 
 .welcome-box{
-    width:100%;
-    max-width:600px;
-    padding:45px 25px;
+    width:95%;
+    max-width:700px;
+    padding:45px 20px;
+    border:2px solid rgba(255,255,255,.2);
+    border-radius:25px;
+    background:rgba(0,0,0,.55);
+    backdrop-filter:blur(8px);
+    box-shadow:
+        0 0 25px rgba(255,0,0,.25),
+        inset 0 0 30px rgba(255,255,255,.03);
 }
 
-.logo{
-    width:110px;
-    height:110px;
-    margin:auto;
-    border-radius:50%;
-    background:#111;
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:32px;
+.welcome-title{
+    font-size:clamp(30px,7vw,65px);
     font-weight:900;
-    box-shadow:0 0 30px rgba(255,0,0,.25);
+    letter-spacing:2px;
+    margin-bottom:30px;
+    animation:titleGlow 3s infinite alternate;
 }
 
-.welcome-box h1{
-    margin-top:25px;
-    font-size:38px;
-    font-weight:900;
-    color:#111;
-}
-
-.welcome-box h2{
-    margin-top:10px;
-    color:#e00000;
-    font-size:21px;
-}
-
-.welcome-box p{
-    margin-top:15px;
-    color:#555;
-    font-size:15px;
+@keyframes titleGlow{
+    from{
+        text-shadow:0 0 5px red;
+    }
+    to{
+        text-shadow:
+        0 0 10px red,
+        0 0 25px red,
+        0 0 45px red;
+    }
 }
 
 .continue-btn{
-    margin-top:30px;
     border:none;
-    background:#e00000;
+    padding:15px 45px;
+    border-radius:30px;
+    background:#e60000;
     color:white;
-    padding:16px 50px;
-    border-radius:12px;
-    font-size:17px;
+    font-size:18px;
     font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 8px 20px rgba(255,0,0,.25);
+    box-shadow:0 0 20px rgba(255,0,0,.5);
+    transition:.3s;
 }
 
 .continue-btn:hover{
-    background:#b90000;
-    transform:translateY(-2px);
+    transform:scale(1.06);
+    background:#ff1111;
 }
 
 .developed{
-    margin-top:35px;
-    color:#e00000;
+    margin-top:30px;
+    color:red;
+    font-size:18px;
     font-weight:bold;
-    letter-spacing:2px;
 }
 
 /* =========================
-   MAIN PAGE
+   COMMON HEADER
 ========================= */
 
-#mainPage{
-    display:none;
-    padding:25px 20px 60px;
-}
-
-.header{
-    max-width:1100px;
-    margin:0 auto 30px;
+.top-header{
+    width:100%;
+    max-width:1200px;
+    margin:auto;
     text-align:center;
+    padding:20px 10px;
 }
 
-.header h1{
-    font-size:38px;
-    font-weight:900;
+.top-header h1{
+    margin:5px 0;
+    font-size:clamp(27px,6vw,48px);
+    color:white;
+    text-shadow:
+        0 0 10px red,
+        0 0 25px red;
 }
 
-.header h2{
-    margin-top:8px;
-    color:#e00000;
+.top-header p{
+    margin:8px 0;
+    color:#aaa;
 }
 
-.header p{
-    margin-top:8px;
-    color:#666;
-}
-
-.website-title{
-    margin-top:20px;
-    font-size:25px;
-    font-weight:900;
+.developed-small{
+    color:red;
+    font-weight:bold;
+    margin-top:10px;
 }
 
 /* =========================
    SUBJECTS
 ========================= */
 
-.subjects{
-    max-width:1100px;
-    margin:auto;
+#mainPage{
+    display:none;
+}
+
+.subject-container{
+    width:100%;
+    max-width:1200px;
+    margin:20px auto 80px;
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:20px;
+    padding:10px;
 }
 
 .subject-card{
-    background:white;
-    border:2px solid #eee;
-    border-radius:18px;
-    padding:25px;
-    cursor:pointer;
-    transition:.25s;
-    box-shadow:0 8px 25px rgba(0,0,0,.07);
+    min-height:180px;
+    border-radius:22px;
+    padding:25px 15px;
+    text-align:center;
+    background:rgba(15,15,15,.85);
+    border:1px solid rgba(255,255,255,.15);
+    transition:.3s;
+    box-shadow:0 0 15px rgba(255,0,0,.08);
 }
 
 .subject-card:hover{
-    transform:translateY(-5px);
-    border-color:#e00000;
-    box-shadow:0 12px 30px rgba(255,0,0,.12);
+    transform:translateY(-8px) scale(1.02);
+    border-color:red;
+    box-shadow:0 0 25px rgba(255,0,0,.35);
 }
 
 .subject-icon{
-    font-size:42px;
+    font-size:50px;
+    margin-bottom:15px;
 }
 
-.subject-card h3{
-    margin-top:12px;
+.subject-card h2{
+    margin:5px 0 10px;
     font-size:21px;
 }
 
 .subject-card p{
-    margin-top:8px;
-    color:#777;
+    color:#aaa;
+    margin:0;
 }
 
-.units-count{
-    display:inline-block;
-    margin-top:15px;
-    background:#111;
+.subject-btn{
+    margin-top:18px;
+    padding:10px 25px;
+    border:1px solid red;
+    background:#160000;
     color:white;
-    padding:7px 12px;
     border-radius:20px;
-    font-size:12px;
+    font-weight:bold;
 }
 
 /* =========================
-   UNIT PAGE
+   UNITS PAGE
 ========================= */
 
-#unitPage{
+#unitsPage{
     display:none;
-    max-width:1000px;
+}
+
+.page-content{
+    max-width:1100px;
     margin:auto;
-    padding:10px 20px 60px;
+    padding:10px;
 }
 
 .back-btn{
     border:none;
-    background:#111;
+    background:#222;
     color:white;
-    padding:11px 18px;
-    border-radius:10px;
-    cursor:pointer;
+    padding:11px 20px;
+    border-radius:20px;
+    margin-bottom:20px;
     font-weight:bold;
-    margin-bottom:25px;
 }
 
-.unit-title{
+.back-btn:hover{
+    background:#e00000;
+}
+
+.units-title{
     text-align:center;
-    margin-bottom:25px;
+    font-size:clamp(25px,6vw,42px);
+    margin:10px 0 30px;
+    text-shadow:0 0 15px red;
 }
 
-.unit-title h1{
-    font-size:30px;
-}
-
-.unit-title p{
-    color:#e00000;
-    font-weight:bold;
-    margin-top:8px;
-}
-
-.units-list{
+.units-container{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:20px;
 }
 
 .unit-card{
-    background:white;
-    border:2px solid #eee;
-    border-radius:15px;
-    padding:20px;
+    min-height:180px;
+    padding:25px 20px;
+    border-radius:20px;
+    background:rgba(15,15,15,.9);
+    border:1px solid #333;
     cursor:pointer;
-    transition:.2s;
-    box-shadow:0 5px 15px rgba(0,0,0,.06);
+    transition:.3s;
 }
 
 .unit-card:hover{
-    border-color:#e00000;
-    transform:translateY(-3px);
-}
-
-.unit-number{
-    color:#e00000;
-    font-weight:bold;
+    transform:translateY(-7px);
+    border-color:red;
+    box-shadow:0 0 25px rgba(255,0,0,.3);
 }
 
 .unit-card h3{
-    margin-top:8px;
-    font-size:17px;
-    line-height:1.4;
+    color:red;
+    font-size:22px;
+    margin-top:0;
+}
+
+.unit-card p{
+    color:white;
+    line-height:1.5;
+    font-size:16px;
 }
 
 /* =========================
@@ -318,121 +317,144 @@ body{
 
 #notesPage{
     display:none;
-    max-width:1100px;
+}
+
+.notes-wrapper{
+    width:100%;
+    max-width:1200px;
     margin:auto;
-    padding:10px 20px 60px;
+    padding:10px;
 }
 
-.notes-heading{
+.notes-header{
     text-align:center;
-    margin-bottom:20px;
+    margin-bottom:15px;
 }
 
-.notes-heading h1{
-    font-size:30px;
-}
-
-.notes-heading p{
-    color:#e00000;
-    margin-top:8px;
-    font-weight:bold;
+.notes-header h2{
+    font-size:clamp(22px,5vw,38px);
+    margin:10px 0;
+    color:red;
+    text-shadow:0 0 15px red;
 }
 
 /* TOOLBAR */
 
 .toolbar{
-    background:#111;
-    border-radius:12px 12px 0 0;
-    padding:10px;
     display:flex;
     flex-wrap:wrap;
     gap:7px;
+    padding:10px;
+    background:#111;
+    border:1px solid #333;
+    border-radius:12px 12px 0 0;
 }
 
 .toolbar button,
 .toolbar select{
-    border:none;
-    background:white;
-    color:#111;
-    padding:8px 10px;
-    border-radius:6px;
-    cursor:pointer;
+    min-height:38px;
+    padding:7px 11px;
+    border:1px solid #444;
+    border-radius:7px;
+    background:#222;
+    color:white;
     font-weight:bold;
 }
 
-.toolbar button:hover{
-    background:#ddd;
+.toolbar button:hover,
+.toolbar select:hover{
+    border-color:red;
+    background:#300000;
 }
 
-.color-label{
-    background:white;
-    border-radius:6px;
-    padding:5px 8px;
-    display:flex;
-    align-items:center;
-    gap:5px;
-    font-size:12px;
-    font-weight:bold;
-}
-
-.color-label input{
-    width:35px;
-    height:28px;
-    border:none;
-    padding:0;
+.color-input{
+    width:42px;
+    height:38px;
+    padding:2px;
+    border:1px solid #444;
+    background:#222;
+    border-radius:7px;
 }
 
 /* EDITOR */
 
 .notes-editor{
     width:100%;
-    min-height:500px;
-    border:2px solid #ddd;
-    border-top:none;
-    padding:20px;
+    min-height:65vh;
     background:white;
+    color:#111;
+    padding:25px;
     font-size:18px;
-    line-height:1.7;
+    line-height:1.65;
     outline:none;
+    border:2px solid #333;
+    border-top:none;
+    border-radius:0 0 12px 12px;
     overflow:auto;
 }
 
 .notes-editor:focus{
-    border-color:#e00000;
+    border-color:red;
 }
 
-.save-area{
-    text-align:center;
-    margin-top:20px;
+.notes-editor:empty:before{
+    content:"Write your notes here...";
+    color:#888;
+}
+
+/* ACTION BUTTONS */
+
+.notes-actions{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+    margin:20px 0;
+}
+
+.action-btn{
+    border:none;
+    padding:13px 25px;
+    border-radius:25px;
+    font-weight:bold;
+    color:white;
+    background:#222;
+    border:1px solid #555;
+}
+
+.action-btn:hover{
+    background:#e00000;
+    border-color:red;
 }
 
 .save-btn{
-    border:none;
-    background:#e00000;
-    color:white;
-    padding:14px 35px;
-    border-radius:10px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
+    background:#b00000;
+    border-color:red;
+    box-shadow:0 0 15px rgba(255,0,0,.3);
 }
 
-.save-btn:hover{
-    background:#b90000;
-}
-
-.save-message{
-    margin-top:10px;
-    color:green;
-    font-weight:bold;
-    min-height:20px;
-}
-
-.firebase-status{
+.saved-message{
     text-align:center;
-    margin-top:8px;
-    font-size:13px;
-    color:#777;
+    min-height:25px;
+    color:#00ff66;
+    font-weight:bold;
+}
+
+/* =========================
+   FULLSCREEN EDITOR
+========================= */
+
+.notes-wrapper.fullscreen-mode{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    max-width:none;
+    background:#050505;
+    padding:10px;
+}
+
+.notes-wrapper.fullscreen-mode .notes-editor{
+    min-height:calc(100vh - 160px);
 }
 
 /* =========================
@@ -441,59 +463,47 @@ body{
 
 .footer{
     text-align:center;
-    margin-top:40px;
-    color:#e00000;
+    padding:30px 10px;
+    color:#777;
+}
+
+.footer span{
+    color:red;
     font-weight:bold;
-    letter-spacing:1px;
 }
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:700px){
+@media(max-width:600px){
 
-    .welcome-box h1{
-        font-size:30px;
+    .welcome-box{
+        padding:35px 15px;
     }
 
-    .welcome-box h2{
-        font-size:17px;
-    }
-
-    .subjects{
+    .subject-container{
         grid-template-columns:1fr;
     }
 
-    .units-list{
+    .units-container{
         grid-template-columns:1fr;
-    }
-
-    .header h1{
-        font-size:30px;
-    }
-
-    .header h2{
-        font-size:18px;
     }
 
     .toolbar{
-        padding:8px;
+        gap:5px;
     }
 
     .toolbar button,
     .toolbar select{
-        font-size:12px;
-        padding:7px;
+        font-size:13px;
+        padding:7px 8px;
     }
 
     .notes-editor{
-        min-height:450px;
-        font-size:16px;
-    }
-
-    .side-brand{
-        font-size:9px;
+        min-height:60vh;
+        padding:15px;
+        font-size:17px;
     }
 }
 
@@ -502,265 +512,106 @@ body{
 
 <body>
 
-<!-- AAMIR BACKGROUND -->
+<!-- =========================
+     ANIMATED BACKGROUND
+========================= -->
 
-<div class="aamir-bg">
-    <span>AAMIR</span>
-    <span>AAMIR</span>
-    <span>AAMIR</span>
-    <span>AAMIR</span>
-    <span>AAMIR</span>
-    <span>AAMIR</span>
-</div>
+<div class="aamir-background">
 
-<!-- SIDE BRAND -->
+    <div class="aamir a1">AAMIR AAMIR AAMIR</div>
+    <div class="aamir a2">AAMIR AAMIR AAMIR</div>
+    <div class="aamir a3">AAMIR AAMIR AAMIR</div>
+    <div class="aamir a4">AAMIR AAMIR AAMIR</div>
+    <div class="aamir a5">AAMIR AAMIR AAMIR</div>
+    <div class="aamir a6">AAMIR AAMIR AAMIR</div>
+    <div class="aamir a7">AAMIR AAMIR AAMIR</div>
 
-<div class="side-brand">
-    DEVELOPED BY AAMIR • AAMIR • AAMIR
 </div>
 
 
 <!-- =========================
-     WELCOME
+     WELCOME PAGE
 ========================= -->
 
-<section id="welcomePage">
+<section id="welcomePage" class="page">
 
     <div class="welcome-box">
 
-        <div class="logo">
-            A
+        <div class="welcome-title">
+            WELCOME TO AAMIR NOTES
         </div>
+
+        <button class="continue-btn"
+                onclick="continueToNotes()">
+            CONTINUE
+        </button>
+
+        <div class="developed">
+            Developed by Aamir
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MAIN SUBJECT PAGE
+========================= -->
+
+<section id="mainPage" class="page">
+
+    <div class="top-header">
 
         <h1>
             WELCOME TO AAMIR NOTES
         </h1>
 
-        <h2>
-            BCA 3 SEMESTER NOTES
-        </h2>
-
         <p>
-            Complete BCA 3rd Semester Study Material
+            BCA 3 SEMESTER • COMPUTER APPLICATIONS
         </p>
 
-        <button
-            id="continueBtn"
-            class="continue-btn"
-            type="button">
-            CONTINUE
-        </button>
-
-        <div class="developed">
-            DEVELOPED BY AAMIR
+        <div class="developed-small">
+            Developed by Aamir
         </div>
 
     </div>
 
-</section>
 
-
-<!-- =========================
-     MAIN PAGE
-========================= -->
-
-<section id="mainPage">
-
-    <div class="header">
-
-        <h1>BCA 3 SEM</h1>
-
-        <h2>
-            Computer Applications - Semester 3 Notes
-        </h2>
-
-        <div class="website-title">
-            WELCOME TO AAMIR WEBSITE
-        </div>
-
-        <p>
-            Select your subject
-        </p>
-
-    </div>
-
-
-    <div class="subjects">
-
-        <!-- 1 -->
-
-        <div
-            class="subject-card"
-            onclick="openSubject('Data Structures')">
-
-            <div class="subject-icon">💻</div>
-
-            <h3>
-                Data Structures
-            </h3>
-
-            <p>
-                Data Structures Notes
-            </p>
-
-            <span class="units-count">
-                4 Units Available
-            </span>
-
-        </div>
-
-
-        <!-- 2 -->
-
-        <div
-            class="subject-card"
-            onclick="openSubject('Basic Mathematics')">
-
-            <div class="subject-icon">🧮</div>
-
-            <h3>
-                Basic Mathematics
-            </h3>
-
-            <p>
-                Basic Mathematics Notes
-            </p>
-
-            <span class="units-count">
-                4 Units Available
-            </span>
-
-        </div>
-
-
-        <!-- 3 -->
-
-        <div
-            class="subject-card"
-            onclick="openSubject('Fundamental of Java Programming')">
-
-            <div class="subject-icon">☕</div>
-
-            <h3>
-                Fundamental of Java Programming
-            </h3>
-
-            <p>
-                Java Programming Notes
-            </p>
-
-            <span class="units-count">
-                4 Units Available
-            </span>
-
-        </div>
-
-
-        <!-- 4 -->
-
-        <div
-            class="subject-card"
-            onclick="openSubject('Financial Literacy')">
-
-            <div class="subject-icon">💰</div>
-
-            <h3>
-                Financial Literacy
-            </h3>
-
-            <p>
-                Finance Notes
-            </p>
-
-            <span class="units-count">
-                4 Units Available
-            </span>
-
-        </div>
-
-
-        <!-- 5 -->
-
-        <div
-            class="subject-card"
-            onclick="openSubject('PC Software Installation & Troubleshooting')">
-
-            <div class="subject-icon">🖥️</div>
-
-            <h3>
-                PC Software Installation & Troubleshooting
-            </h3>
-
-            <p>
-                PC Installation Notes
-            </p>
-
-            <span class="units-count">
-                4 Units Available
-            </span>
-
-        </div>
-
-
-        <!-- 6 -->
-
-        <div
-            class="subject-card"
-            onclick="openSubject('Urdu')">
-
-            <div class="subject-icon">📝</div>
-
-            <h3>
-                Urdu
-            </h3>
-
-            <p>
-                Urdu Notes
-            </p>
-
-            <span class="units-count">
-                4 Units Available
-            </span>
-
-        </div>
-
+    <div class="subject-container"
+         id="subjectContainer">
     </div>
 
 
     <div class="footer">
-        DEVELOPED BY AAMIR
+        BCA 3 Semester Notes —
+        <span>Developed by Aamir</span>
     </div>
 
 </section>
 
 
 <!-- =========================
-     UNIT PAGE
+     UNITS PAGE
 ========================= -->
 
-<section id="unitPage">
+<section id="unitsPage" class="page">
 
-    <button
-        class="back-btn"
-        onclick="backToSubjects()">
-        ← BACK TO SUBJECTS
-    </button>
+    <div class="page-content">
 
-    <div class="unit-title">
+        <button class="back-btn"
+                onclick="backToSubjects()">
+            ← Back to Subjects
+        </button>
 
-        <h1 id="selectedSubjectTitle">
-            Subject
+        <h1 class="units-title"
+            id="unitsSubjectName">
         </h1>
 
-        <p>
-            Select Unit
-        </p>
+        <div class="units-container"
+             id="unitsContainer">
+        </div>
 
-    </div>
-
-    <div
-        id="unitsContainer"
-        class="units-list">
     </div>
 
 </section>
@@ -770,254 +621,257 @@ body{
      NOTES PAGE
 ========================= -->
 
-<section id="notesPage">
+<section id="notesPage" class="page">
 
-    <button
-        class="back-btn"
-        onclick="backToUnits()">
-        ← BACK TO UNITS
-    </button>
+    <div class="notes-wrapper"
+         id="notesWrapper">
 
-    <div class="notes-heading">
-
-        <h1 id="notesSubject">
-            Subject
-        </h1>
-
-        <p id="notesUnit">
-            Unit
-        </p>
-
-    </div>
-
-
-    <!-- TOOLBAR -->
-
-    <div class="toolbar">
-
-        <button
-            type="button"
-            onclick="formatText('bold')">
-            <b>B</b>
+        <button class="back-btn"
+                onclick="backToUnits()">
+            ← Back to Units
         </button>
 
-        <button
-            type="button"
-            onclick="formatText('italic')">
-            <i>I</i>
-        </button>
+        <div class="notes-header">
 
-        <button
-            type="button"
-            onclick="formatText('underline')">
-            <u>U</u>
-        </button>
+            <h2 id="notesTitle">
+                Notes
+            </h2>
 
-        <button
-            type="button"
-            onclick="formatText('strikeThrough')">
-            <s>S</s>
-        </button>
-
-
-        <button
-            type="button"
-            onclick="formatText('justifyLeft')">
-            ⬅
-        </button>
-
-        <button
-            type="button"
-            onclick="formatText('justifyCenter')">
-            ↔
-        </button>
-
-        <button
-            type="button"
-            onclick="formatText('justifyRight')">
-            ➡
-        </button>
-
-
-        <button
-            type="button"
-            onclick="formatText('insertUnorderedList')">
-            • List
-        </button>
-
-        <button
-            type="button"
-            onclick="formatText('insertOrderedList')">
-            1. List
-        </button>
-
-
-        <select
-            onchange="changeFontSize(this.value)">
-
-            <option value="">Font Size</option>
-            <option value="1">Small</option>
-            <option value="3">Normal</option>
-            <option value="5">Large</option>
-            <option value="6">Very Large</option>
-            <option value="7">Huge</option>
-
-        </select>
-
-
-        <label class="color-label">
-            Text
-            <input
-                type="color"
-                value="#000000"
-                onchange="changeTextColor(this.value)">
-        </label>
-
-
-        <label class="color-label">
-            Highlight
-            <input
-                type="color"
-                value="#ffff00"
-                onchange="changeHighlight(this.value)">
-        </label>
-
-
-        <button
-            type="button"
-            onclick="clearFormatting()">
-            Clear Format
-        </button>
-
-    </div>
-
-
-    <!-- NOTES EDITOR -->
-
-    <div
-        id="notesEditor"
-        class="notes-editor"
-        contenteditable="true"
-        spellcheck="true">
-
-    </div>
-
-
-    <!-- SAVE -->
-
-    <div class="save-area">
-
-        <button
-            id="saveBtn"
-            class="save-btn"
-            type="button">
-            💾 SAVE NOTES
-        </button>
-
-        <div
-            id="saveMessage"
-            class="save-message">
         </div>
 
-        <div
-            id="firebaseStatus"
-            class="firebase-status">
-            Connecting to Firebase...
+
+        <!-- TOOLBAR -->
+
+        <div class="toolbar">
+
+            <button onclick="formatText('bold')">
+                B
+            </button>
+
+            <button onclick="formatText('italic')">
+                <i>I</i>
+            </button>
+
+            <button onclick="formatText('underline')">
+                <u>U</u>
+            </button>
+
+            <button onclick="formatText('strikeThrough')">
+                <s>S</s>
+            </button>
+
+
+            <button onclick="formatText('justifyLeft')">
+                Left
+            </button>
+
+            <button onclick="formatText('justifyCenter')">
+                Center
+            </button>
+
+            <button onclick="formatText('justifyRight')">
+                Right
+            </button>
+
+
+            <button onclick="formatText('insertUnorderedList')">
+                • List
+            </button>
+
+            <button onclick="formatText('insertOrderedList')">
+                1. List
+            </button>
+
+
+            <select onchange="changeFontSize(this.value)">
+
+                <option value="">
+                    Font Size
+                </option>
+
+                <option value="1">
+                    Small
+                </option>
+
+                <option value="3">
+                    Normal
+                </option>
+
+                <option value="5">
+                    Large
+                </option>
+
+                <option value="7">
+                    Very Large
+                </option>
+
+            </select>
+
+
+            <span style="color:#aaa;">
+                Text
+            </span>
+
+            <input type="color"
+                   class="color-input"
+                   value="#ff0000"
+                   onchange="changeTextColor(this.value)">
+
+
+            <span style="color:#aaa;">
+                Highlight
+            </span>
+
+            <input type="color"
+                   class="color-input"
+                   value="#ffff00"
+                   onchange="changeHighlight(this.value)">
+
         </div>
 
-    </div>
+
+        <!-- NOTES EDITOR -->
+
+        <div id="notes"
+             class="notes-editor"
+             contenteditable="true">
+        </div>
 
 
-    <div class="footer">
-        DEVELOPED BY AAMIR
+        <!-- ACTION BUTTONS -->
+
+        <div class="notes-actions">
+
+            <button class="action-btn save-btn"
+                    onclick="saveNotes()">
+                💾 Save Notes
+            </button>
+
+            <button class="action-btn"
+                    onclick="clearEditor()">
+                Clear
+            </button>
+
+            <button class="action-btn"
+                    onclick="toggleFullscreen()">
+                ⛶ Full Screen
+            </button>
+
+        </div>
+
+
+        <div id="savedMessage"
+             class="saved-message">
+        </div>
+
     </div>
 
 </section>
-
-
-<!-- =====================================================
-     FIREBASE CDN
-===================================================== -->
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
 
 <script>
 
 /* =====================================================
    FIREBASE CONFIG
-
-   YAHAN APNI FIREBASE CONFIG PASTE KARNA HAI
 ===================================================== */
 
 const firebaseConfig = {
 
-    apiKey: "PASTE_YOUR_API_KEY_HERE",
+    apiKey: "YOUR_API_KEY_HERE",
 
-    authDomain: "bca-3-semester.firebaseapp.com",
+    authDomain:
+        "bca-3-semester.firebaseapp.com",
 
     databaseURL:
-    "https://bca-3-semester-default-rtdb.firebaseio.com",
+        "https://bca-3-semester-default-rtdb.firebaseio.com",
 
     projectId:
-    "bca-3-semester",
+        "bca-3-semester",
 
     storageBucket:
-    "bca-3-semester.firebasestorage.app",
+        "bca-3-semester.firebasestorage.app",
 
     messagingSenderId:
-    "977366533839",
+        "977366533839",
 
     appId:
-    "PASTE_YOUR_APP_ID_HERE"
+        "1:977366533839:web:dd68b77c64522dd40459ba"
 
 };
 
 
 /* =====================================================
-   FIREBASE START
+   FIREBASE INITIALIZATION
 ===================================================== */
 
 let db = null;
-let firebaseReady = false;
 
 try{
 
-    if(
-        firebaseConfig.apiKey !==
-        "PASTE_YOUR_API_KEY_HERE"
-    ){
+    firebase.initializeApp(firebaseConfig);
 
-        firebase.initializeApp(firebaseConfig);
-
-        db = firebase.database();
-
-        firebaseReady = true;
-
-        document.getElementById("firebaseStatus").innerText =
-            "✓ Firebase Connected";
-
-    }else{
-
-        document.getElementById("firebaseStatus").innerText =
-            "⚠ Firebase config add karo";
-
-    }
+    db = firebase.database();
 
 }catch(error){
 
-    console.error(error);
-
-    document.getElementById("firebaseStatus").innerText =
-        "⚠ Firebase connection error";
+    console.error(
+        "Firebase initialization error:",
+        error
+    );
 
 }
 
 
 /* =====================================================
-   SUBJECT / UNIT DATA
+   VARIABLES
+===================================================== */
+
+let currentSubject = "";
+
+let currentUnit = "";
+
+
+/* =====================================================
+   SUBJECT DATA
+===================================================== */
+
+const subjects = [
+
+    {
+        name:"Data Structures",
+        icon:"💻"
+    },
+
+    {
+        name:"Basic Mathematics",
+        icon:"🧮"
+    },
+
+    {
+        name:"Fundamental of Java Programming",
+        icon:"☕"
+    },
+
+    {
+        name:"Financial Literacy",
+        icon:"💰"
+    },
+
+    {
+        name:"PC Software Installation & Troubleshooting",
+        icon:"🖥️"
+    },
+
+    {
+        name:"Urdu",
+        icon:"📝"
+    }
+
+];
+
+
+/* =====================================================
+   UNIT / CHAPTER DATA
 ===================================================== */
 
 const unitNames = {
@@ -1103,33 +957,82 @@ const unitNames = {
 
 
 /* =====================================================
-   CURRENT STATE
-===================================================== */
-
-let currentSubject = "";
-
-let currentUnit = "";
-
-
-/* =====================================================
    CONTINUE BUTTON
 ===================================================== */
 
-document
-.getElementById("continueBtn")
-.addEventListener("click", function(){
+function continueToNotes(){
 
-    document
-    .getElementById("welcomePage")
-    .style.display = "none";
+    document.getElementById("welcomePage")
+        .style.display = "none";
 
-    document
-    .getElementById("mainPage")
-    .style.display = "block";
+    document.getElementById("mainPage")
+        .style.display = "block";
+
+    document.getElementById("unitsPage")
+        .style.display = "none";
+
+    document.getElementById("notesPage")
+        .style.display = "none";
 
     window.scrollTo(0,0);
 
-});
+}
+
+
+/* =====================================================
+   CREATE SUBJECT CARDS
+===================================================== */
+
+function createSubjects(){
+
+    const container =
+        document.getElementById("subjectContainer");
+
+    container.innerHTML = "";
+
+
+    subjects.forEach(function(subject){
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "subject-card";
+
+
+        card.innerHTML = `
+
+            <div class="subject-icon">
+                ${subject.icon}
+            </div>
+
+            <h2>
+                ${subject.name}
+            </h2>
+
+            <p>
+                4 Units Available
+            </p>
+
+            <button class="subject-btn">
+                Open Subject
+            </button>
+
+        `;
+
+
+        card.onclick = function(){
+
+            openSubject(subject.name);
+
+        };
+
+
+        container.appendChild(card);
+
+    });
+
+}
 
 
 /* =====================================================
@@ -1140,65 +1043,64 @@ function openSubject(subject){
 
     currentSubject = subject;
 
-    document
-    .getElementById("mainPage")
-    .style.display = "none";
 
-    document
-    .getElementById("unitPage")
-    .style.display = "block";
+    document.getElementById("mainPage")
+        .style.display = "none";
 
-    document
-    .getElementById("notesPage")
-    .style.display = "none";
+    document.getElementById("unitsPage")
+        .style.display = "block";
+
+    document.getElementById("notesPage")
+        .style.display = "none";
 
 
-    document
-    .getElementById("selectedSubjectTitle")
-    .innerText = subject;
+    document.getElementById("unitsSubjectName")
+        .innerText = subject;
 
 
-    let container =
+    const container =
         document.getElementById("unitsContainer");
 
     container.innerHTML = "";
 
 
-    unitNames[subject].forEach(function(unit,index){
+    unitNames[subject].forEach(
+        function(name,index){
 
-        let card =
-            document.createElement("div");
+            const card =
+                document.createElement("div");
 
-        card.className = "unit-card";
-
-
-        card.innerHTML = `
-
-            <div class="unit-number">
-                UNIT ${index + 1}
-            </div>
-
-            <h3>
-                ${unit}
-            </h3>
-
-        `;
+            card.className =
+                "unit-card";
 
 
-        card.onclick = function(){
+            card.innerHTML = `
 
-            openNotes(
-                subject,
-                "Unit " + (index + 1),
-                unit
-            );
+                <h3>
+                    Unit ${index + 1}
+                </h3>
 
-        };
+                <p>
+                    ${name}
+                </p>
+
+            `;
 
 
-        container.appendChild(card);
+            card.onclick = function(){
 
-    });
+                openUnit(
+                    index + 1,
+                    name
+                );
+
+            };
+
+
+            container.appendChild(card);
+
+        }
+    );
 
 
     window.scrollTo(0,0);
@@ -1207,44 +1109,40 @@ function openSubject(subject){
 
 
 /* =====================================================
-   OPEN NOTES
+   OPEN UNIT
 ===================================================== */
 
-function openNotes(subject,unit,unitTitle){
+function openUnit(unitNumber,unitName){
 
-    currentSubject = subject;
-
-    currentUnit = unit;
-
-
-    document
-    .getElementById("unitPage")
-    .style.display = "none";
+    currentUnit =
+        "Unit " + unitNumber;
 
 
-    document
-    .getElementById("notesPage")
-    .style.display = "block";
+    document.getElementById("unitsPage")
+        .style.display = "none";
+
+    document.getElementById("notesPage")
+        .style.display = "block";
 
 
-    document
-    .getElementById("notesSubject")
-    .innerText = subject;
+    document.getElementById("notesTitle")
+        .innerText =
+        currentSubject +
+        " • Unit " +
+        unitNumber +
+        " • " +
+        unitName;
 
 
-    document
-    .getElementById("notesUnit")
-    .innerText =
-        unit + " — " + unitTitle;
+    document.getElementById("notes")
+        .innerHTML = "";
 
 
-    document
-    .getElementById("notesEditor")
-    .innerHTML = "";
+    document.getElementById("savedMessage")
+        .innerText = "";
 
 
     loadNotes();
-
 
     window.scrollTo(0,0);
 
@@ -1257,17 +1155,14 @@ function openNotes(subject,unit,unitTitle){
 
 function backToSubjects(){
 
-    document
-    .getElementById("unitPage")
-    .style.display = "none";
+    document.getElementById("unitsPage")
+        .style.display = "none";
 
-    document
-    .getElementById("notesPage")
-    .style.display = "none";
+    document.getElementById("notesPage")
+        .style.display = "none";
 
-    document
-    .getElementById("mainPage")
-    .style.display = "block";
+    document.getElementById("mainPage")
+        .style.display = "block";
 
     window.scrollTo(0,0);
 
@@ -1280,13 +1175,17 @@ function backToSubjects(){
 
 function backToUnits(){
 
-    document
-    .getElementById("notesPage")
-    .style.display = "none";
+    document.getElementById("notesPage")
+        .style.display = "none";
 
-    document
-    .getElementById("unitPage")
-    .style.display = "block";
+    document.getElementById("unitsPage")
+        .style.display = "block";
+
+    document.getElementById("notes")
+        .innerHTML = "";
+
+    document.getElementById("savedMessage")
+        .innerText = "";
 
     window.scrollTo(0,0);
 
@@ -1294,7 +1193,7 @@ function backToUnits(){
 
 
 /* =====================================================
-   FORMAT FUNCTIONS
+   FORMAT TEXT
 ===================================================== */
 
 function formatText(command){
@@ -1305,12 +1204,15 @@ function formatText(command){
         null
     );
 
-    document
-    .getElementById("notesEditor")
-    .focus();
+    document.getElementById("notes")
+        .focus();
 
 }
 
+
+/* =====================================================
+   TEXT COLOR
+===================================================== */
 
 function changeTextColor(color){
 
@@ -1320,33 +1222,55 @@ function changeTextColor(color){
         color
     );
 
-    document
-    .getElementById("notesEditor")
-    .focus();
+    document.getElementById("notes")
+        .focus();
 
 }
 
+
+/* =====================================================
+   HIGHLIGHT COLOR
+===================================================== */
 
 function changeHighlight(color){
 
-    document.execCommand(
-        "hiliteColor",
-        false,
-        color
-    );
+    let success =
+        document.execCommand(
+            "hiliteColor",
+            false,
+            color
+        );
 
-    document
-    .getElementById("notesEditor")
-    .focus();
+
+    if(!success){
+
+        document.execCommand(
+            "backColor",
+            false,
+            color
+        );
+
+    }
+
+
+    document.getElementById("notes")
+        .focus();
 
 }
 
+
+/* =====================================================
+   FONT SIZE
+===================================================== */
 
 function changeFontSize(size){
 
     if(!size){
+
         return;
+
     }
+
 
     document.execCommand(
         "fontSize",
@@ -1354,30 +1278,15 @@ function changeFontSize(size){
         size
     );
 
-    document
-    .getElementById("notesEditor")
-    .focus();
 
-}
-
-
-function clearFormatting(){
-
-    document.execCommand(
-        "removeFormat",
-        false,
-        null
-    );
-
-    document
-    .getElementById("notesEditor")
-    .focus();
+    document.getElementById("notes")
+        .focus();
 
 }
 
 
 /* =====================================================
-   NOTE KEY
+   DATABASE KEY
 ===================================================== */
 
 function getNotesKey(){
@@ -1395,14 +1304,81 @@ function getNotesKey(){
    SAVE NOTES
 ===================================================== */
 
-document
-.getElementById("saveBtn")
-.addEventListener("click", async function(){
+function saveNotes(){
 
-    let notes =
-        document
-        .getElementById("notesEditor")
+    const notes =
+        document.getElementById("notes")
         .innerHTML;
+
+
+    if(!db){
+
+        showMessage(
+            "Firebase connected nahi hai. API key check karo.",
+            "red"
+        );
+
+        return;
+
+    }
+
+
+    if(!currentSubject || !currentUnit){
+
+        showMessage(
+            "Pehle subject aur unit select karo.",
+            "red"
+        );
+
+        return;
+
+    }
+
+
+    const key =
+        getNotesKey();
+
+
+    db.ref("notes/" + key)
+        .set(notes)
+        .then(function(){
+
+            showMessage(
+                "✓ Notes successfully saved!",
+                "#00ff66"
+            );
+
+        })
+        .catch(function(error){
+
+            console.error(error);
+
+            showMessage(
+                "❌ Notes save nahi hue.",
+                "red"
+            );
+
+        });
+
+}
+
+
+/* =====================================================
+   LOAD NOTES
+===================================================== */
+
+function loadNotes(){
+
+    if(!db){
+
+        showMessage(
+            "Firebase connected nahi hai.",
+            "red"
+        );
+
+        return;
+
+    }
 
 
     if(!currentSubject || !currentUnit){
@@ -1412,141 +1388,87 @@ document
     }
 
 
-    /* Local backup */
-
-    localStorage.setItem(
-        "AAMIR_NOTES_" + getNotesKey(),
-        notes
-    );
+    const key =
+        getNotesKey();
 
 
-    /* Firebase */
+    db.ref("notes/" + key)
+        .once("value")
+        .then(function(snapshot){
 
-    if(firebaseReady && db){
-
-        try{
-
-            await db
-            .ref("notes/" + getNotesKey())
-            .set({
-
-                content: notes,
-
-                subject: currentSubject,
-
-                unit: currentUnit,
-
-                updatedAt:
-                    new Date().toISOString()
-
-            });
+            const data =
+                snapshot.val();
 
 
-            document
-            .getElementById("saveMessage")
-            .innerText =
-                "✓ Notes Saved Successfully Online";
+            if(data !== null){
 
-        }catch(error){
+                document.getElementById("notes")
+                    .innerHTML = data;
+
+            }else{
+
+                document.getElementById("notes")
+                    .innerHTML = "";
+
+            }
+
+        })
+        .catch(function(error){
 
             console.error(error);
 
-            document
-            .getElementById("saveMessage")
-            .innerText =
-                "✓ Saved on this device. Firebase save failed.";
+            showMessage(
+                "Notes load nahi ho rahe.",
+                "red"
+            );
 
-        }
+        });
 
-    }else{
+}
 
-        document
-        .getElementById("saveMessage")
-        .innerText =
-            "✓ Notes Saved on this device";
 
-    }
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(message,color){
+
+    const element =
+        document.getElementById("savedMessage");
+
+
+    element.innerText =
+        message;
+
+    element.style.color =
+        color;
 
 
     setTimeout(function(){
 
-        document
-        .getElementById("saveMessage")
-        .innerText = "";
+        element.innerText = "";
 
     },4000);
 
-});
+}
 
 
 /* =====================================================
-   LOAD NOTES
+   CLEAR EDITOR
 ===================================================== */
 
-async function loadNotes(){
+function clearEditor(){
 
-    let editor =
-        document.getElementById("notesEditor");
-
-
-    editor.innerHTML = "";
-
-
-    /* Firebase first */
-
-    if(firebaseReady && db){
-
-        try{
-
-            let snapshot =
-                await db
-                .ref("notes/" + getNotesKey())
-                .once("value");
-
-
-            let data =
-                snapshot.val();
-
-
-            if(data){
-
-                if(typeof data === "object"
-                    && data.content !== undefined){
-
-                    editor.innerHTML =
-                        data.content;
-
-                }else{
-
-                    editor.innerHTML =
-                        data;
-
-                }
-
-                return;
-
-            }
-
-        }catch(error){
-
-            console.error(error);
-
-        }
-
-    }
-
-
-    /* Local backup */
-
-    let localNotes =
-        localStorage.getItem(
-            "AAMIR_NOTES_" + getNotesKey()
+    const answer =
+        confirm(
+            "Kya aap editor ka current text clear karna chahte ho?"
         );
 
 
-    if(localNotes){
+    if(answer){
 
-        editor.innerHTML = localNotes;
+        document.getElementById("notes")
+            .innerHTML = "";
 
     }
 
@@ -1554,26 +1476,27 @@ async function loadNotes(){
 
 
 /* =====================================================
-   AUTO LOCAL BACKUP
+   FULL SCREEN
 ===================================================== */
 
-document
-.getElementById("notesEditor")
-.addEventListener("input",function(){
+function toggleFullscreen(){
 
-    if(currentSubject && currentUnit){
+    const wrapper =
+        document.getElementById("notesWrapper");
 
-        localStorage.setItem(
 
-            "AAMIR_NOTES_" + getNotesKey(),
+    wrapper.classList.toggle(
+        "fullscreen-mode"
+    );
 
-            this.innerHTML
+}
 
-        );
 
-    }
+/* =====================================================
+   START WEBSITE
+===================================================== */
 
-});
+createSubjects();
 
 </script>
 
